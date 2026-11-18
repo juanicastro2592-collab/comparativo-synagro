@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instructivo · Comparativo de Cultivos · Synagro</title>
+<style>
+:root{--navy:#1F4E8C;--side:#173E70;--green:#008841;--green-d:#2C6838;--lime:#9DC543;--amber:#B87700;--red:#BF3A2B;--fg:#1B2130;--muted:#5D665B;--line:#E1E4DB;--bg:#F4F5F1;--panel:#fff;--mk:#F2680C}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:18px}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 "Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:var(--navy)}
+.layout{display:grid;grid-template-columns:280px minmax(0,1fr);min-height:100vh}
+aside{background:linear-gradient(180deg,var(--navy),var(--side));color:#E3EAF5;padding:26px 20px;position:sticky;top:0;height:100vh;overflow:auto}
+aside .logo{background:#fff;border-radius:14px;padding:10px 14px;display:inline-block}
+aside .logo img{height:34px;display:block}
+aside h2{font-size:17px;color:#fff;margin:16px 0 2px}
+aside .s{font-size:13px;opacity:.75;margin:0 0 18px}
+aside nav a{display:block;color:#E3EAF5;text-decoration:none;padding:6px 10px;border-radius:8px;font-size:14.5px}
+aside nav a:hover{background:rgba(255,255,255,.1);color:#fff}
+aside nav a.sub{padding-left:24px;font-size:13.5px;opacity:.85}
+aside .btns{margin-top:20px;display:flex;flex-direction:column;gap:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;border:0;cursor:pointer}
+.btn.g{background:#3CBC74;color:#fff}.btn.w{background:rgba(255,255,255,.12);color:#fff}
+main{padding:34px 48px 80px;max-width:1120px}
+header.hero{background:var(--panel);border-radius:14px;padding:28px 32px;box-shadow:0 6px 22px rgba(23,62,112,.09);border-left:6px solid var(--green)}
+header.hero h1{margin:0;font-size:30px;color:var(--navy)}
+header.hero p{margin:8px 0 0;color:var(--muted);max-width:75ch}
+section{background:var(--panel);border-radius:14px;padding:26px 32px;margin-top:24px;box-shadow:0 6px 22px rgba(23,62,112,.07)}
+h2{font-size:23px;color:var(--navy);margin:0 0 10px;display:flex;align-items:center;gap:12px}
+h2 .n{flex:none;width:34px;height:34px;border-radius:10px;background:var(--green);color:#fff;display:grid;place-items:center;font-size:17px}
+h3{font-size:18px;color:var(--green-d);margin:26px 0 6px}
+p{margin:8px 0;max-width:85ch}
+figure{margin:16px 0 8px}
+figure img{display:block;max-width:100%;height:auto;border-radius:10px;border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.06)}
+figure.narrow img{max-width:460px}
+figure.phones{display:flex;gap:18px;flex-wrap:wrap}
+figure.phones img{width:240px}
+figcaption{font-size:13.5px;color:var(--muted);margin-top:6px}
+ol.mk{list-style:none;padding:0;margin:12px 0;counter-reset:mk}
+ol.mk>li{position:relative;padding:4px 0 8px 44px;max-width:88ch}
+ol.mk>li::before{counter-increment:mk;content:counter(mk);position:absolute;left:0;top:4px;width:28px;height:28px;border-radius:50%;background:var(--mk);color:#fff;font-weight:800;font-size:14px;display:grid;place-items:center;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+ul{padding-left:22px}ul li{margin:4px 0;max-width:85ch}
+.tip,.warn,.info{border-radius:10px;padding:12px 16px;margin:14px 0;max-width:90ch}
+.tip{background:#EEF5DD;border-left:4px solid var(--lime)}
+.warn{background:#FBF1DE;border-left:4px solid var(--amber)}
+.info{background:#E7EEF7;border-left:4px solid var(--navy)}
+.tip b:first-child,.warn b:first-child,.info b:first-child{display:block;margin-bottom:2px}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14.5px}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#F0F3EC;color:var(--green-d);font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+td:first-child{font-weight:700;white-space:nowrap}
+.kbd{display:inline-block;border:1px solid #c9cfc3;border-bottom-width:2px;border-radius:5px;padding:0 6px;font-size:13px;background:#fafbf8;font-family:Consolas,monospace}
+.pill{display:inline-block;border-radius:999px;padding:1px 10px;font-size:13px;font-weight:700}
+.pill.g{background:#DDF0E3;color:var(--green)}.pill.a{background:#FBEBD0;color:var(--amber)}.pill.r{background:#F8DCD8;color:var(--red)}
+.steps{counter-reset:st;list-style:none;padding:0}
+.steps li{position:relative;padding-left:40px;margin:10px 0}
+.steps li::before{counter-increment:st;content:counter(st);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:8px;background:var(--navy);color:#fff;font-weight:800;display:grid;place-items:center;font-size:14px}
+.foot{margin-top:30px;color:var(--muted);font-size:13px;text-align:center}
+.menu-m{display:none}
+@media (max-width:900px){
+  .layout{display:block}
+  aside{position:static;height:auto}
+  aside nav{display:none}
+  aside nav.open{display:block}
+  .menu-m{display:inline-flex;margin-top:10px}
+  main{padding:18px 14px 60px}
+  section,header.hero{padding:20px 18px}
+  figure.narrow img{max-width:100%}
+  td:first-child{white-space:normal}
+}
+@media print{
+  @page{size:A4;margin:14mm 12mm}
+  body{background:#fff;font-size:11.5pt}
+  .layout{display:block}
+  aside{display:none}
+  main{padding:0;max-width:none}
+  section,header.hero{box-shadow:none;border:1px solid var(--line);padding:16px 20px;margin-top:14px}
+  section{break-before:auto}
+  figure img{max-height:118mm;width:auto;margin:0 auto}
+  figure.phones img{max-height:110mm;width:auto}
+  figure{break-inside:avoid}
+  ol.mk>li,.tip,.warn,.info,tr{break-inside:avoid}
+  h2,h3{break-after:avoid}
+  .noprint{display:none!important}
+  #cliente{break-before:page}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+  <span class="logo"><img src="img/logo.png" alt="Synagro"></span>
+  <h2>Comparativo de Cultivos</h2>
+  <p class="s">Instructivo de uso · noviembre 2026</p>
+  <div class="btns noprint">
+    <a class="btn g" href="../" target="_blank" rel="noopener">Abrir el dashboard →</a>
+    <a class="btn w" href="instructivo.pdf" download>Descargar en PDF</a>
+    <button class="btn w menu-m" type="button" onclick="document.querySelector('aside nav').classList.toggle('open')">Ver índice</button>
+  </div>
+  <nav style="margin-top:18px">
+    <a href="#que-es">1. Qué es y de dónde salen los datos</a>
+    <a href="#pantalla">2. Un vistazo a la pantalla</a>
+    <a href="#filtros">3. Filtros</a>
+    <a class="sub" href="#cotizacion">Cotización y arriendo</a>
+    <a class="sub" href="#anonimo">Modo anónimo</a>
+    <a href="#indicadores">4. Indicadores</a>
+    <a href="#margenes">5. Márgenes</a>
+    <a href="#analisis">6. Análisis</a>
+    <a class="sub" href="#analisis-cliente">De un cliente</a>
+    <a class="sub" href="#analisis-zona">De una sub-zona, zona o región</a>
+    <a href="#cliente">7. Análisis por Cliente</a>
+    <a class="sub" href="#cliente-arriendo">Costos, rinde y arriendo</a>
+    <a class="sub" href="#cliente-estab">Establecimientos y campañas</a>
+    <a href="#cuadro">8. Cuadro de margen bruto</a>
+    <a href="#costos">9. Costos</a>
+    <a class="sub" href="#leyendas">Usar las leyendas</a>
+    <a href="#ingresos">10. Ingresos y simulador</a>
+    <a href="#lotes">11. Detalle por lote</a>
+    <a href="#pdf">12. Informe PDF y CSV</a>
+    <a href="#actualizar">13. Actualizar datos y calidad</a>
+    <a href="#config">14. Configuración y empresas</a>
+    <a class="sub" href="#preferencias">Mis preferencias</a>
+    <a class="sub" href="#mi-link">Tu link</a>
+    <a class="sub" href="#admin">Administrar empresas</a>
+    <a class="sub" href="#cosecha">Cargar la cosecha</a>
+    <a href="#celular">15. En el celular</a>
+    <a href="#glosario">16. Glosario y cálculos</a>
+    <a href="#recetas">17. Recetas rápidas</a>
+    <a href="#faq">18. Preguntas frecuentes</a>
+  </nav>
+</aside>
+
+<main>
+<header class="hero">
+  <h1>Cómo leer y usar el Comparativo de Cultivos</h1>
+  <p>Esta guía explica, pantalla por pantalla, qué muestra el dashboard, cómo se calcula cada número y qué podés hacer con él. Las capturas son del dashboard real en <b>modo anónimo</b>: las empresas aparecen con su código (por ejemplo, <i>Empresa SA</i>). Los números en <span style="color:var(--mk);font-weight:800">círculos naranjas</span> de cada captura se explican en la lista que va abajo.</p>
+</header>
+
+<!-- 1 -->
+<section id="que-es" class="keep">
+  <h2><span class="n">1</span>Qué es y de dónde salen los datos</h2>
+  <p>El dashboard compara los <b>márgenes brutos agrícolas</b> de los clientes de Synagro por empresa, sub-zona, zona y región. Lo puede abrir cualquiera con el link, sin cuenta de Google y sin instalar nada.</p>
+  <ul>
+    <li><b>Fuente:</b> los archivos Excel que los asesores suben a la carpeta de Drive de Synagro (hoja <i>Base Cultivos</i>, una fila por lote). Los costos salen del informe <i>Comparativo entre Lotes</i> de Synagro 7, en dólares.</li>
+    <li><b>Se suman todos los archivos de la carpeta.</b> Si dos archivos traen la misma empresa, cultivo y campaña, gana el más reciente. Así se pueden ir agregando campañas, cultivos y clientes nuevos sin pisar lo anterior.</li>
+    <li><b>Los nombres de los clientes nunca viajan al público.</b> El servidor reemplaza la empresa por su código (columna <i>Abreviatura</i> del Excel), y los establecimientos y lotes por números, antes de mandar los datos a la página.</li>
+    <li><b>Todos los valores están en u$s por hectárea</b> y todos los promedios son <b>ponderados por superficie</b>: una empresa de 2.000 ha pesa más en el promedio que una de 200 ha.</li>
+  </ul>
+</section>
+
+<!-- 2 -->
+<section id="pantalla">
+  <h2><span class="n">2</span>Un vistazo a la pantalla</h2>
+  <figure><img src="img/01-vista-general.jpg" alt="Vista general del dashboard"><figcaption>Pantalla principal al abrir el link.</figcaption></figure>
+  <ol class="mk">
+    <li><b>Vistas.</b> El menú azul de la izquierda cambia lo que se ve abajo de los indicadores: Márgenes, Análisis, Análisis por Cliente, Cuadro de margen bruto, Costos, Ingresos y simulador, y Detalle por lote. Los filtros valen para todas las vistas.</li>
+    <li><b>Actualizar datos.</b> Arriba del botón dice la fecha de los datos, cuántos archivos se leyeron y cuántos lotes hay. El botón vuelve a leer la carpeta de Drive (ver <a href="#actualizar">sección 13</a>).</li>
+    <li><b>Ayuda.</b> Abre este instructivo.</li>
+    <li><b>Filtros.</b> Eligen qué se analiza: cultivo, campaña, región, zona, sub-zona, empresa, asesor y establecimiento, y cómo se analiza (ver <a href="#filtros">sección 3</a>).</li>
+    <li><b>Indicadores.</b> Los números clave de la selección (ver <a href="#indicadores">sección 4</a>).</li>
+    <li><b>Hallazgos y análisis.</b> Un acceso directo a la vista Análisis, que escribe sola las conclusiones de lo que filtraste.</li>
+    <li><b>Configuración.</b> Para elegir con qué filtros arranca el dashboard cada vez que lo abrís, copiar tu link personal y, con la clave, administrar las empresas (ver <a href="#config">sección 14</a>).</li>
+  </ol>
+  <div class="tip"><b>Truco</b>Los bloques <i>Filtros</i> e <i>Indicadores</i> tienen un botón <b>Ocultar</b> arriba a la derecha. Si lo usás, queda una línea con el resumen de lo elegido y ganás lugar para los gráficos. El navegador lo recuerda para la próxima vez.</div>
+</section>
+
+<!-- 3 -->
+<section id="filtros">
+  <h2><span class="n">3</span>Filtros</h2>
+  <figure><img src="img/02-filtros.jpg" alt="Panel de filtros"></figure>
+  <ol class="mk">
+    <li><b>Cultivo.</b> Uno por vez (Maíz, Soja, Trigo, Poroto, Tabaco, Caña de Azúcar, Garbanzo). Si un cultivo todavía no tiene datos, la página lo avisa.</li>
+    <li><b>Campaña, Región, Zona, Sub-zona, Empresa y Asesor.</b> Permiten elegir <b>varios valores</b> a la vez: se abre una lista con casillas. Marcá las que quieras; «Todas» limpia ese filtro. Ver la captura de abajo.</li>
+    <li><b>Establecimiento.</b> Uno por vez. La lista muestra solo los establecimientos de las empresas elegidas.</li>
+    <li><b>Analizar por.</b> Define qué es cada barra de los gráficos y cada columna del cuadro: <b>Empresa</b>, <b>Sub-zona</b>, <b>Zona</b> o <b>Región</b>. Ejemplo: con «Sub-zona» ves una barra por sub-zona con el promedio ponderado de sus empresas. El dashboard <b>arranca en «Sub-zona»</b>, salvo que hayas guardado otra opción en <a href="#config">Configuración</a>.</li>
+    <li><b>Margen.</b> <b>Sin arriendo</b> = margen bruto (ingreso − gastos directos). <b>Con arriendo</b> = margen bruto − arriendo. Cambia todos los gráficos, el ranking, los textos y el PDF (ver <a href="#cotizacion">más abajo</a>).</li>
+    <li><b>Cotización según.</b> De dónde sale el precio: <b>Hoja o manual</b> (así arranca) o <b>Ingreso / rinde</b>, el precio que surge del ingreso cargado en cada lote (ver <a href="#cotizacion">más abajo</a>).</li>
+    <li><b>Cotización u$s/tn.</b> Muestra la cotización que se está usando. Si escribís otra, el dashboard pasa a «Hoja o manual» con ese valor (ver <a href="#cotizacion">más abajo</a>).</li>
+    <li><b>Modo anónimo.</b> Activado, se ven códigos; desactivado (con clave), los nombres reales (ver <a href="#anonimo">más abajo</a>).</li>
+    <li><b>Limpiar filtros.</b> Vuelve todo a «Todas/Todos». No toca el cultivo, la cotización (ni de dónde sale) ni el modo anónimo. Si guardaste una configuración, al lado aparece el botón <b>Mi configuración</b>, que la vuelve a aplicar (ver la captura de abajo).</li>
+    <li><b>Descargar informe PDF.</b> Arma el informe con formato Synagro de lo que estás viendo (ver <a href="#pdf">sección 12</a>).</li>
+    <li><b>Calidad de datos.</b> Avisos sobre el Excel para corregir (ver <a href="#actualizar">sección 13</a>).</li>
+    <li><b>Ocultar.</b> Pliega el bloque de filtros.</li>
+  </ol>
+  <figure class="narrow"><img style="width:420px" src="img/25-mi-configuracion.jpg" alt="Botón Mi configuración"><figcaption>«Mi configuración» aparece solo si guardaste una en este navegador.</figcaption></figure>
+  <figure class="narrow"><img src="img/03-seleccion-multiple.jpg" alt="Lista de selección múltiple"><figcaption>Selección múltiple: marcá una o varias empresas. La lista se cierra al tocar afuera.</figcaption></figure>
+  <div class="tip"><b>Atajo: filtrar desde un gráfico</b>En los gráficos de barras de <i>Márgenes</i> y <i>Costos</i>, hacer <b>clic en una barra</b> filtra por esa empresa (o sub-zona, zona o región, según «Analizar por»). Otro clic sobre la misma barra quita el filtro.</div>
+
+  <h3 id="cotizacion">Cotización y arriendo</h3>
+  <ul>
+    <li><b>Cotización según: Hoja o manual</b> (así arranca el dashboard). Todos los lotes usan el mismo precio: el de la hoja <i>Cotizacion</i> del Excel para ese cultivo y campaña (precio estimativo en dólares por tonelada, promedio CAC-BCR), o el que escribas en el casillero. Si una campaña no tiene cotización, se usa la última conocida y la página lo avisa.</li>
+    <li><b>Cotización según: Ingreso / rinde.</b> Cada lote usa el <b>ingreso</b> cargado en la columna <i>Ingreso</i> de la base (u$s/ha). La cotización de cada empresa, sub-zona, zona o región sale de la cuenta <b>ingreso ÷ rinde × 1.000</b> (u$s/tn), con promedios ponderados por hectárea. Así, cada columna del cuadro muestra el precio al que realmente se calculó ese ingreso, y puede ser distinto en cada empresa.</li>
+    <li><b>Lotes sin ingreso:</b> con «Ingreso / rinde», los lotes que tienen el ingreso en 0 se calculan con la cotización de la hoja. Abajo del cuadro se indica cuántos lotes están en esa situación.</li>
+    <li><b>Para probar otro precio</b>, escribilo en el casillero. El dashboard pasa solo a «Hoja o manual», todo se recalcula al instante y aparece el link <b>«Usar la de la hoja»</b> para volver al valor original. Si volvés a «Ingreso / rinde», el valor que escribiste queda guardado para cuando vuelvas a «Hoja o manual». El precio que escribas no se guarda para los demás: es solo para tu pantalla.</li>
+    <li>Con qué opción arranca el dashboard se puede cambiar en <a href="#preferencias">Mis preferencias</a>.</li>
+    <li><b>Arriendo:</b> se toma, en este orden, el valor cargado en el panel de administración y, si no hay, el de la hoja <i>Arriendo</i>. El arriendo puede variar por sub-zona; en una empresa con varias sub-zonas se pondera por hectárea. El arriendo <b>nunca</b> forma parte de los gastos directos: solo se resta al elegir «Con arriendo». Un asterisco (*) indica un valor cargado a mano en el panel.</li>
+  </ul>
+
+  <h3 id="anonimo">Modo anónimo</h3>
+  <figure class="narrow"><img src="img/19-clave.jpg" alt="Pedido de clave"></figure>
+  <ul>
+    <li><b>Activado</b> (así arranca siempre): cada empresa aparece como <b>«Empresa» + su código</b> (por ejemplo <i>Empresa SA</i>), o con el <b>nombre de referencia</b> que se le haya puesto en el panel de administración. Los establecimientos se ven como <i>Empresa SA · Est. 1</i> y los lotes como <i>Lote 12</i>.</li>
+    <li><b>Desactivado:</b> la página pide la <b>clave</b>. Con la clave correcta se ven los nombres reales y aparece el botón <b>Administrar empresas</b>, que abre esa parte de <a href="#config">Configuración</a>. El acceso dura 30 minutos o hasta cerrar la pestaña.</li>
+  </ul>
+  <div class="warn"><b>Antes de compartir pantalla o mandar un PDF</b>Volvé a activar el modo anónimo. El PDF y el CSV salen con los nombres que se ven en ese momento.</div>
+</section>
+
+<!-- 4 -->
+<section id="indicadores">
+  <h2><span class="n">4</span>Indicadores</h2>
+  <figure><img src="img/04-indicadores.jpg" alt="Indicadores sin arriendo"><figcaption>Con «Margen: Sin arriendo».</figcaption></figure>
+  <table>
+    <tr><th>Tarjeta</th><th>Qué muestra</th></tr>
+    <tr><td>Superficie</td><td>Hectáreas sembradas de la selección.</td></tr>
+    <tr><td>Rendimiento</td><td>Rinde promedio en kg/ha, ponderado por superficie.</td></tr>
+    <tr><td>Ingreso</td><td>En u$s/ha. Con «Hoja o manual»: rendimiento × cotización ÷ 1.000. Con «Ingreso / rinde»: el ingreso cargado en la base (los lotes sin ingreso, con la hoja).</td></tr>
+    <tr><td>Gastos directos</td><td>Total de labores, tareas, cosecha e insumos en u$s/ha. El anillo <span style="color:var(--mk);font-weight:800">①</span> dice qué % del ingreso se va en gastos.</td></tr>
+    <tr><td>Margen bruto</td><td>Ingreso − gastos directos. El anillo <span style="color:var(--mk);font-weight:800">②</span> es el % del ingreso que queda como margen. Los anillos suman 100%.</td></tr>
+    <tr><td>Margen total estimado</td><td>Margen × hectáreas de cada empresa, sumado: cuántos dólares deja la selección en total.</td></tr>
+  </table>
+  <figure><img src="img/05-indicadores-con-arriendo.jpg" alt="Indicadores con arriendo"><figcaption>Con «Margen: Con arriendo» aparece la tarjeta Arriendo.</figcaption></figure>
+  <ol class="mk">
+    <li><b>Arriendo.</b> Promedio en u$s/ha sobre <b>toda</b> la superficie de la selección: las empresas sin arriendo cuentan como 0. El anillo es el % del ingreso.</li>
+    <li><b>Margen después de arriendo.</b> Margen bruto − arriendo. Ahora los tres anillos (gastos + arriendo + margen) suman 100% del ingreso.</li>
+  </ol>
+</section>
+
+<!-- 5 -->
+<section id="margenes">
+  <h2><span class="n">5</span>Márgenes</h2>
+  <figure><img src="img/06-margenes.jpg" alt="Vista Márgenes"></figure>
+  <ol class="mk">
+    <li><b>Margen bruto por empresa</b> (o por sub-zona, zona o región). Las barras van de mayor a menor. La línea vertical marca el <b>promedio ponderado</b>.
+      <span class="pill g">verde</span> = por encima del promedio; <span class="pill a">ámbar</span> = por debajo; <span class="pill r">rojo</span> = margen negativo. Pasando el mouse se ve el detalle: superficie, rinde, ingreso, gastos, margen y arriendo. Clic en una barra = filtrar.</li>
+    <li><b>Rendimiento por empresa</b>, de mayor a menor, con la línea del rinde promedio. El <b>círculo</b> sobre cada barra es el <b>punto de indiferencia</b>: los kg/ha que hacen falta para pagar los gastos directos con la cotización elegida. Cuanto más lejos está el círculo de la punta de la barra, más «colchón» tiene esa empresa.</li>
+  </ol>
+</section>
+
+<!-- 6 -->
+<section id="analisis">
+  <h2><span class="n">6</span>Análisis</h2>
+  <p>La vista <b>Análisis</b> escribe sola los hallazgos y conclusiones de lo que filtraste. <b>Cambia según el filtro:</b></p>
+  <table>
+    <tr><th>Si filtrás…</th><th>Te muestra</th></tr>
+    <tr><td>Nada, o varios valores</td><td>El análisis general de la selección: quién lidera, qué pesa más (costos o rinde), quién gasta de más, quién concentra la superficie, la brecha entre el mejor y el peor y la estructura de gastos.</td></tr>
+    <tr><td>Un solo cliente</td><td>El análisis de ese cliente comparado contra el <b>total</b>.</td></tr>
+    <tr><td>Un cliente + una sub-zona</td><td>Lo mismo, y además contra el <b>promedio de esa sub-zona</b>.</td></tr>
+    <tr><td>Un establecimiento</td><td>El análisis de ese establecimiento contra el total.</td></tr>
+    <tr><td>Una sola sub-zona, zona o región</td><td>El análisis de ese grupo contra el total y por dentro.</td></tr>
+  </table>
+  <div class="info"><b>¿Qué es «el total»?</b>Todas las empresas del cultivo elegido, respetando solo el filtro de <b>Campaña</b>. Los demás filtros (región, zona, empresa, asesor) no lo achican, para que la comparación sea siempre contra el mismo universo.</div>
+  <figure><img src="img/07-analisis-general.jpg" alt="Análisis general"><figcaption>Sin filtros: cuatro hallazgos y el análisis escrito de toda la selección.</figcaption></figure>
+
+  <h3 id="analisis-cliente">Análisis de un cliente</h3>
+  <figure><img src="img/08-analisis-cliente.jpg" alt="Análisis de un cliente"><figcaption>Ejemplo: Empresa SA, con la sub-zona Salta Sur filtrada.</figcaption></figure>
+  <ol class="mk">
+    <li><b>Título:</b> qué se está analizando.</li>
+    <li><b>Comparación:</b> los números del cliente, del total y de la sub-zona, con la diferencia. En la columna «Dif.», <span style="color:var(--green);font-weight:700">verde</span> es a favor del cliente (rinde más, gasta menos, gana más) y <span style="color:var(--red);font-weight:700">rojo</span> en contra.</li>
+    <li><b>Contra el total / Contra la sub-zona:</b> cambia contra qué se arma el gráfico de al lado.</li>
+    <li><b>De dónde sale la diferencia:</b> arranca en el margen del total (barra gris verdosa), suma o resta lo que aporta cada cosa y termina en el margen del cliente (barra celeste). <span class="pill g">verde</span> = le suma margen frente al total; <span class="pill r">rojo</span> = le resta. «Rendimiento» es lo que gana o pierde por rendir distinto; cada rubro es lo que gana o pierde por gastar menos o más en él.</li>
+  </ol>
+  <figure><img src="img/09-analisis-cliente-textos.jpg" alt="Hallazgos de un cliente"></figure>
+  <p>Debajo, cuatro tarjetas y el análisis escrito:</p>
+  <ul>
+    <li><b>Dónde está parado:</b> su margen, la diferencia con el total y el puesto en el ranking (y en su sub-zona, si la filtraste).</li>
+    <li><b>De dónde sale la diferencia:</b> cuánto se explica por el rinde y cuánto por los gastos, y los dos rubros que más mueven.</li>
+    <li><b>Rubros:</b> en qué gasta más y en qué gasta menos que su sub-zona (o que el total), en u$s/ha y en %.</li>
+    <li><b>Margen de seguridad:</b> cuánto rinde le sobra antes de perder plata, el precio de indiferencia y cuántos kg/ha o qué cotización le faltan para llegar al promedio.</li>
+    <li>En el texto también aparecen el <b>arriendo</b> (cuánto le come del margen y si le cambia el puesto), el <b>mejor y el peor establecimiento y lote</b>, qué tan parejos son sus lotes y, si hay más de una campaña, cómo evolucionó.</li>
+  </ul>
+
+  <h3 id="analisis-zona">Análisis de una sub-zona, zona o región</h3>
+  <figure><img src="img/10-analisis-subzona.jpg" alt="Análisis de una sub-zona"></figure>
+  <ul>
+    <li><b>Dónde está parada:</b> margen, diferencia con el total y puesto entre las sub-zonas (o zonas, o regiones).</li>
+    <li><b>Brecha</b> entre la mejor y la peor empresa (o sub-zona) de adentro, y si la explica el rinde o los gastos.</li>
+    <li><b>Cuánto pesa cada empresa:</b> si una empresa grande «tira» el promedio, dice cuánto daría sin ella.</li>
+    <li>El texto agrega el ranking de adentro, los <b>rubros que más cambian entre empresas</b> (dónde hay más para mejorar), el arriendo y la evolución por campaña.</li>
+  </ul>
+  <div class="tip"><b>Truco</b>Para preparar una reunión con un cliente: filtrá su empresa y su sub-zona, abrí Análisis y usá la tabla y el gráfico para mostrarle dónde gana o pierde frente a sus vecinos.</div>
+</section>
+
+<!-- 7 -->
+<section id="cliente">
+  <h2><span class="n">7</span>Análisis por Cliente</h2>
+  <p>Una vista <b>solo de gráficos</b> para mirar a <b>un cliente</b> por dentro, sin compararlo con otros: sus indicadores, sus costos, su rinde, su arriendo, sus establecimientos y su evolución. Usa los filtros de arriba (cultivo, campaña, región, zona, sub-zona, asesor, margen y cotización) y suma dos controles propios.</p>
+  <figure><img src="img/26-analisis-por-cliente.jpg" alt="Análisis por Cliente"><figcaption>Ejemplo: Empresa J, Maíz 2025/26, con los filtros ocultos para ganar lugar.</figcaption></figure>
+  <ol class="mk">
+    <li><b>Análisis por Cliente.</b> La vista nueva del menú. En esta vista no se muestran las tarjetas de indicadores de arriba: todo está en los gráficos.</li>
+    <li><b>Cliente.</b> Elegí el cliente a analizar. La lista trae los clientes que quedan con los filtros de arriba. Si en el filtro <b>Empresa</b> elegiste un solo cliente, arranca con ese.</li>
+    <li><b>Unidad.</b> <b>u$s/ha</b> o <b>% del ingreso</b> (cuánto de cada peso que entra se va en cada cosa). El rendimiento siempre se muestra en kg/ha.</li>
+    <li><b>Resumen.</b> Cultivo, campaña, hectáreas, lotes, establecimientos, sub-zonas donde tiene lotes y cotización usada.</li>
+    <li><b>Total del cliente / Por sub-zona.</b> Cambia el eje de abajo del gráfico. <b>Por sub-zona</b> (así arranca) abre al cliente en cada sub-zona donde tiene lotes, más una columna <b>Total del cliente</b> en verde. <b>Total del cliente</b> muestra un solo número por indicador. Si el cliente tiene una sola sub-zona con esos filtros, el gráfico lo avisa (la sub-zona y el total dan igual).</li>
+    <li><b>Indicadores principales.</b> Ingreso, gastos directos y margen bruto. Con «Margen: Con arriendo» se suman <b>Arriendo</b>, <b>Gastos directos + arriendo</b> y <b>Margen después de arriendo</b>.</li>
+  </ol>
+
+  <h3 id="cliente-arriendo">Costos, rinde y arriendo</h3>
+  <figure><img src="img/27-cliente-con-arriendo.jpg" alt="Costos del cliente con arriendo"><figcaption>Ejemplo con «Margen: Con arriendo»: el arriendo aparece en rojo como un rubro más.</figcaption></figure>
+  <ol class="mk">
+    <li><b>Costos por rubro.</b> Labores y tareas, cosecha, semillas, herbicidas, insecticidas, fungicidas, fertilizantes y otros. <b>Por sub-zona</b> se ven apilados y el número de arriba es el total; <b>Total del cliente</b> muestra una barra por rubro.</li>
+    <li><b>Peso de cada rubro.</b> Qué porcentaje del gasto del cliente se lleva cada rubro. En el centro, el gasto total.</li>
+    <li><b>Rendimiento y punto de indiferencia.</b> La barra es el rinde y el círculo, los kg/ha que necesita para cubrir los costos. En «% del ingreso» muestra el <b>% de incidencia</b>.</li>
+  </ol>
+  <div class="info"><b>Con arriendo, el arriendo es un costo más</b>Si elegís <b>Margen: Con arriendo</b>, en esta vista el arriendo se suma a los costos: aparece como rubro en Costos por rubro y en Peso de cada rubro, el centro de la dona pasa a ser gastos + arriendo, y el punto de indiferencia y el % de incidencia se calculan con los gastos + el arriendo. Sin arriendo, todo queda como en el resto del dashboard.</div>
+
+  <h3 id="cliente-estab">Arriendo, establecimientos y campañas</h3>
+  <figure><img src="img/28-cliente-establecimientos.jpg" alt="Establecimientos y evolución del cliente"></figure>
+  <ol class="mk">
+    <li><b>Por establecimiento.</b> Elegí qué ver (rendimiento, ingreso, gastos, arriendo o margen) y compará los establecimientos del cliente, ordenados de mayor a menor. La línea punteada es el promedio del cliente.</li>
+    <li><b>Evolución por campaña.</b> El mismo indicador, campaña por campaña. Usa <b>todas</b> las campañas del cliente aunque hayas filtrado una, y respeta los demás filtros. Hoy la base trae una sola campaña (2025/26), así que se ve un solo punto: la línea aparece cuando se sumen otras.</li>
+  </ol>
+  <p>El gráfico <b>Arriendo</b> muestra el arriendo, el margen bruto y el margen después de arriendo, también por sub-zona o en total. Si el cliente no tiene arriendo cargado, lo avisa.</p>
+  <div class="tip"><b>Truco</b>Esta vista no va al informe PDF. Para comparar al cliente contra su sub-zona o contra el total, usá la vista <a href="#analisis-cliente">Análisis</a>.</div>
+</section>
+
+<!-- 8 -->
+<section id="cuadro">
+  <h2><span class="n">8</span>Cuadro de margen bruto</h2>
+  <p>Es la réplica de la planilla de margen bruto: una columna por empresa (o por grupo) y la columna del promedio.</p>
+  <figure><img src="img/11-cuadro.jpg" alt="Cuadro de margen bruto"></figure>
+  <ol class="mk">
+    <li><b>Orden de las columnas:</b> por margen (de mayor a menor), por superficie o alfabético.</li>
+    <li><b>Exportar CSV:</b> baja el cuadro para abrirlo en Excel.</li>
+    <li><b>Promedio general:</b> promedio ponderado por superficie de la selección.</li>
+  </ol>
+  <ul>
+    <li><b>Producción:</b> rendimiento, cotización y hectáreas.</li>
+    <li><b>u$s/ha:</b> ingresos; labores propias y contratadas, tareas propias y contratistas y cosecha (= Total tareas); semillas, herbicidas, insecticidas, fungicidas, fertilizantes, varios, otros, gastos fijos y variables (= Total por rubros); Gastos directos = Total tareas + Total por rubros; y el Margen bruto.</li>
+    <li>Con «Con arriendo» se agregan las filas <b>Arriendo</b> y <b>Margen bruto después de arriendo</b>.</li>
+    <li><b>Indicadores:</b> punto de indiferencia (kg/ha) y % de incidencia (qué parte del rinde se necesita para cubrir los gastos).</li>
+    <li>En la fila del margen, las celdas en verde están sobre el promedio y en ámbar, debajo.</li>
+    <li><b>Para recorrer el cuadro</b>, mantené apretado el clic izquierdo y arrastrá (en el celular, deslizá con el dedo). Los nombres de las empresas, la sub-zona y las columnas de rubros y Promedio general quedan fijos, así siempre sabés qué estás mirando.</li>
+  </ul>
+  <div class="info"><b>Cosecha</b>Es el costo de cosecha que se carga por empresa y campaña en <a href="#cosecha">Administrar empresas</a>. El Excel no trae una columna Cosecha: el costo viene incluido en las labores. Por eso la cosecha <b>propia</b> se resta de Labores Propias y la <b>contratada</b>, de Labores Contratadas. Así no se cuenta dos veces: el Total tareas, los gastos directos y el margen bruto no cambian, solo se ve aparte cuánto es cosecha. Si una empresa no tiene cosecha cargada, la fila queda en 0, las labores quedan como vienen en el Excel y abajo del cuadro aparece un aviso.</div>
+</section>
+
+<!-- 9 -->
+<section id="costos">
+  <h2><span class="n">9</span>Costos</h2>
+  <figure><img src="img/12-costos-composicion.jpg" alt="Composición del gasto directo"></figure>
+  <ol class="mk">
+    <li><b>u$s/ha o % del gasto:</b> en u$s/ha se compara cuánto gasta cada uno; en %, cómo reparte su gasto (por ejemplo, quién destina más a semillas).</li>
+    <li><b>Composición del gasto directo:</b> una barra por empresa, ordenadas de menor a mayor gasto, partida por rubro. Pasando el mouse se ven los valores. Clic en una barra = filtrar.</li>
+  </ol>
+
+  <h3 id="leyendas">Usar las leyendas para ver solo algunos rubros</h3>
+  <figure><img src="img/13-costos-leyenda.jpg" alt="Leyenda con dos rubros elegidos"><figcaption>Solo Semillas y Herbicidas: las demás referencias quedan en gris.</figcaption></figure>
+  <ul>
+    <li><b>Clic</b> en una referencia (por ejemplo «Semillas»): el gráfico muestra <b>solo</b> ese rubro.</li>
+    <li><span class="kbd">Shift</span> + <b>clic</b> (o <span class="kbd">Ctrl</span> + clic) en otras referencias: las <b>suma</b> a la selección. Shift + clic sobre una ya elegida la saca.</li>
+    <li><b>Clic</b> sobre la única referencia que quedó: vuelven a verse <b>todas</b>.</li>
+    <li>Funciona igual en todos los gráficos con referencias (la dona, la dispersión, el simulador). La selección se mantiene aunque cambies los filtros.</li>
+  </ul>
+
+  <figure><img src="img/14-costos-dona-cascada.jpg" alt="Peso de cada rubro y del ingreso al margen"></figure>
+  <ul>
+    <li><b>Peso de cada rubro:</b> la dona reparte el gasto directo de toda la selección; en el centro, el gasto total en u$s/ha.</li>
+    <li><b>Del ingreso al margen:</b> parte del ingreso, resta rubro por rubro y llega al margen bruto (y, con arriendo, al margen después de arriendo). Con el selector <span style="color:var(--mk);font-weight:800">①</span> «Ver» elegís el promedio de la selección o una empresa en particular.</li>
+  </ul>
+</section>
+
+<!-- 10 -->
+<section id="ingresos">
+  <h2><span class="n">10</span>Ingresos y simulador</h2>
+  <figure><img src="img/15-dispersion.jpg" alt="Rendimiento vs margen"></figure>
+  <p><b>Rendimiento vs. margen:</b> cada burbuja es una empresa (o grupo). Más a la derecha = más rinde; más arriba = más margen; más grande = más hectáreas. Cuando analizás por empresa, los colores son las sub-zonas. Las líneas punteadas marcan los promedios y arman cuatro cuadrantes:</p>
+  <ul>
+    <li><b>Arriba a la derecha:</b> rinde más y gana más.</li>
+    <li><b>Arriba a la izquierda:</b> rinde menos pero gana más → gasta bien.</li>
+    <li><b>Abajo a la derecha:</b> rinde más pero gana menos → gasta de más.</li>
+    <li><b>Abajo a la izquierda:</b> rinde menos y gana menos.</li>
+  </ul>
+  <figure><img src="img/16-simulador.jpg" alt="Simulador"><figcaption>Ejemplo: cotización de u$s 200/tn y 10% menos de rinde.</figcaption></figure>
+  <ol class="mk">
+    <li><b>Cotización:</b> mové la barra para simular otro precio (de u$s 120 a 300/tn). Con «Ingreso / rinde», cada empresa conserva su propio precio y la barra los sube o baja a todos en la misma proporción.</li>
+    <li><b>Variación de rinde:</b> de −30% a +30% sobre el rinde real (útil para simular un año seco o uno muy bueno).</li>
+    <li><b>Volver a los valores actuales</b>.</li>
+    <li><b>Resultados de la selección:</b> ingreso, margen, margen total y punto de indiferencia simulados, con la diferencia contra el valor actual. A la derecha, el margen actual (verde) y el simulado (azul) de cada empresa.</li>
+  </ol>
+  <div class="info"><b>El simulador no cambia nada más</b>Es solo para «qué pasaría si». Para recalcular todo el dashboard con otro precio, usá el casillero <i>Cotización</i> de los filtros.</div>
+</section>
+
+<!-- 11 -->
+<section id="lotes">
+  <h2><span class="n">11</span>Detalle por lote</h2>
+  <figure><img src="img/17-detalle-lote.jpg" alt="Detalle por lote"></figure>
+  <ol class="mk">
+    <li><b>Buscar:</b> escribí parte del lote, la empresa, el establecimiento, la sub-zona o el asesor. Al lado dice cuántos lotes coinciden.</li>
+    <li><b>Ordenar:</b> clic en el título de cualquier columna; otro clic invierte el orden (▲/▼).</li>
+    <li><b>Diferencia:</b> ingreso − gasto base de cada lote. En rojo, los lotes con resultado negativo. El ingreso del lote sigue la opción <a href="#cotizacion">Cotización según</a>: con «Ingreso / rinde» es el de la base; con «Hoja o manual», rinde × la cotización elegida.</li>
+  </ol>
+  <div class="warn"><b>Ojo con el «gasto base»</b>Son los valores del lote tal como vienen en el Excel: no separan la cosecha cargada en el panel ni restan el arriendo. Por eso la «Diferencia» de un lote no es exactamente su margen bruto del cuadro.</div>
+</section>
+
+<!-- 12 -->
+<section id="pdf">
+  <h2><span class="n">12</span>Informe PDF y CSV</h2>
+  <figure><img src="img/20-pdf.jpg" alt="Páginas del informe PDF"><figcaption>Primeras páginas del informe PDF.</figcaption></figure>
+  <ul>
+    <li><b>Descargar informe PDF</b> arma un informe A4 con formato Synagro de unas 7 páginas: portada, indicadores, márgenes, rendimiento y punto de indiferencia, cuadro de margen bruto, estructura de costos, y rendimiento y margen.</li>
+    <li>Respeta <b>todo lo que tengas elegido</b>: filtros, «Analizar por», con o sin arriendo, cotización y modo anónimo. Si el modo anónimo está activado, el nombre del archivo termina en «_anonimo».</li>
+    <li>No incluye los textos de la vista Análisis.</li>
+    <li><b>Exportar CSV</b> (en el Cuadro de margen bruto) baja la misma tabla para trabajarla en Excel.</li>
+  </ul>
+</section>
+
+<!-- 13 -->
+<section id="actualizar">
+  <h2><span class="n">13</span>Actualizar datos y calidad de datos</h2>
+  <h3>Actualizar datos</h3>
+  <ul>
+    <li>Al abrir la página, los datos se cargan solos. El servidor guarda una copia por unos minutos para que abra rápido.</li>
+    <li>El botón <b>Actualizar datos</b> (abajo del menú) fuerza una lectura nueva de la carpeta de Drive. Usalo después de subir un Excel. Los filtros que tenías se mantienen.</li>
+    <li>Si el servidor no responde, la página muestra los últimos datos guardados y lo avisa en amarillo arriba del botón.</li>
+  </ul>
+  <h3>Para los asesores: cómo sumar datos nuevos</h3>
+  <ol class="steps">
+    <li>Armá el Excel con la hoja <b>Base Cultivos</b> (una fila por lote) con las columnas de siempre, incluida <b>Abreviatura</b> (el código de la empresa) y el <b>Ingreso</b> de cada lote en u$s/ha (se usa con «Cotización según: Ingreso / rinde»; si queda en 0, ese lote toma la cotización de la hoja). Si corresponde, completá también las hojas <b>Cotizacion</b> y <b>Arriendo</b>.</li>
+    <li>Subilo a la carpeta de Drive del comparativo. El nombre del archivo no importa (no empieces el nombre con «_» ni «~», porque esos archivos se ignoran).</li>
+    <li>Abrí el dashboard y tocá <b>Actualizar datos</b>. Una campaña, cultivo o cliente nuevo aparecen solos en los filtros.</li>
+    <li>Revisá <b>Calidad de datos</b> por si hay algo para corregir.</li>
+  </ol>
+  <h3>Calidad de datos</h3>
+  <figure><img src="img/18-calidad-datos.jpg" alt="Calidad de datos"></figure>
+  <p>Avisos que conviene corregir en el Excel. No frenan el dashboard, pero pueden distorsionar algún número. Por ejemplo: una sub-zona que no está en la hoja <i>Referencia de Zonas</i>, una empresa sin código o con dos códigos, un cultivo y campaña sin cotización, o rendimientos fuera de rango. Si un archivo no tiene la hoja <i>Base Cultivos</i> o le falta una columna obligatoria, se descarta y se avisa, sin afectar a los demás.</p>
+</section>
+
+<!-- 14 -->
+<section id="config">
+  <h2><span class="n">14</span>Configuración y administración de empresas</h2>
+  <p>El botón <b>⚙ Configuración</b> está en el menú azul, arriba de <b>Actualizar datos</b> (en el celular, dentro del menú ☰). Abre un panel con dos partes: <b>Mis preferencias</b>, que puede usar cualquiera, y <b>Administración de empresas</b>, que necesita la clave.</p>
+  <figure><img src="img/23-configuracion.jpg" alt="Panel de configuración"></figure>
+  <ol class="mk">
+    <li><b>Mis preferencias.</b> Con qué arranca el dashboard: cultivo, campaña, región, zona, sub-zona, «Analizar por», margen (con o sin arriendo) y <b>cotización según</b> (hoja o manual / ingreso ÷ rinde). Región, zona y sub-zona van encadenadas: si elegís una región, la lista de zonas muestra solo las de esa región, y lo mismo pasa con las sub-zonas.</li>
+    <li><b>Guardar como predeterminado.</b> Desde ese momento, cada vez que abras el dashboard <b>en este navegador</b> arranca así. Los filtros se pueden seguir cambiando como siempre.</li>
+    <li><b>Usar los filtros de ahora.</b> Copia al formulario lo que tenés filtrado en este momento. Es la forma más rápida: armá la vista que te gusta, tocá este botón y después <b>Guardar</b>.</li>
+    <li><b>Copiar mi link.</b> Copia un link que abre el dashboard con esta configuración (ver <a href="#mi-link">Tu link</a>).</li>
+    <li><b>El link.</b> Queda a la vista por si preferís copiarlo a mano.</li>
+    <li><b>Restablecer.</b> Borra tu configuración y el dashboard vuelve a arrancar con la general: Maíz, todas las campañas y zonas, por sub-zona, sin arriendo y con la cotización de la hoja.</li>
+    <li><b>Qué tenés guardado.</b> Un resumen de la configuración guardada en este navegador.</li>
+    <li><b>Administración de empresas.</b> Sin la clave muestra el botón <b>Ingresar clave</b>; con la clave aparece la tabla de empresas (ver <a href="#admin">más abajo</a>).</li>
+  </ol>
+
+  <h3 id="preferencias">Mis preferencias</h3>
+  <figure class="narrow"><img style="width:300px" src="img/24-config-campana.jpg" alt="Opción La más reciente en Campaña"><figcaption>En Campaña, «La más reciente» se actualiza sola: cuando se cargue una campaña nueva, el dashboard arranca en ella sin tocar nada.</figcaption></figure>
+  <ul>
+    <li><b>Se guarda en el navegador</b>, no en una cuenta: no hace falta usuario ni clave. Cada persona tiene la suya y no le cambia nada a los demás.</li>
+    <li>Si usás el dashboard en la compu y en el celular, se configura una vez en cada uno, o se usa <a href="#mi-link">tu link</a> en los dos.</li>
+    <li>Si borrás los datos de navegación o usás una ventana de incógnito, la configuración no se guarda. El link sigue funcionando igual.</li>
+    <li>Si algo de lo guardado ya no existe en los datos (por ejemplo, una sub-zona que dejó de cargarse), esa parte se ignora y el resto se aplica igual.</li>
+  </ul>
+
+  <h3 id="mi-link">Tu link</h3>
+  <ul>
+    <li>El link lleva tu configuración adentro. Sirve para guardarlo en <b>favoritos</b>, tenerlo en el celular o mandarlo por WhatsApp a un compañero, que lo abre con esa misma vista.</li>
+    <li>Solo lleva cultivo, campaña, región, zona, sub-zona, «Analizar por», margen y de dónde sale la cotización: <b>nunca nombres de clientes</b>. Un precio escrito a mano no viaja en el link.</li>
+    <li>Al abrir el dashboard, primero manda <b>el link</b>, después lo que tengas <b>guardado en el navegador</b> y, si no hay nada, la configuración <b>general</b>.</li>
+  </ul>
+
+  <h3 id="admin">Administrar empresas (solo con clave)</h3>
+  <p>Con la clave, al desactivar el modo anónimo (o con <b>Ingresar clave</b> en Configuración) se habilita la tabla de empresas, también desde el botón <b>Administrar empresas</b> de los filtros. Arriba de la tabla hay un filtro de <b>región, zona y sub-zona</b> que arranca con tus preferencias, para ver solo los clientes de tu zona. Podés elegir todas, una o varias.</p>
+  <div class="tip"><b>El filtro solo ordena</b>No le saca permisos a nadie: con la clave se pueden ver y editar todas las empresas. Si editás una empresa y después queda oculta por el filtro, el cambio no se pierde y se guarda junto con los demás.</div>
+  <p>Una fila por empresa:</p>
+  <table>
+    <tr><th>Columna</th><th>Para qué sirve</th></tr>
+    <tr><td>Código</td><td>El de la columna <i>Abreviatura</i> del Excel. Se cambia en el Excel.</td></tr>
+    <tr><td>Nombre de referencia</td><td>Cómo se muestra al público si se habilita (ej.: «Cliente Metán 1»). Máximo 40 caracteres. Si es igual al nombre real, la página avisa antes de guardar.</td></tr>
+    <tr><td>Mostrar al público</td><td><b>No</b>: el público ve «Empresa + código». <b>Sí</b>: ve el nombre de referencia. Ojo: con «Sí» y el nombre de referencia vacío, el público ve el <b>nombre real</b>.</td></tr>
+    <tr><td>Arriendo manual</td><td>Por campaña y sub-zona, en u$s/ha. Vacío = usar la hoja <i>Arriendo</i>; 0 = sin arriendo; un número = ese valor. Se marca con * en el cuadro y el PDF.</td></tr>
+    <tr><td>Cosecha</td><td>Por campaña, dos montos en u$s/ha: <b>Propia</b> y <b>Contratada</b> (ver abajo).</td></tr>
+  </table>
+  <h3 id="cosecha">Cargar la cosecha</h3>
+  <p>El costo de cosecha <b>no sale del Excel</b>: viene metido dentro de las labores. Se carga acá, por <b>empresa y campaña</b>, y vale para todos los cultivos de esa campaña.</p>
+  <ol class="steps">
+    <li>En la columna <b>Cosecha u$s/ha por campaña</b>, buscá la campaña.</li>
+    <li>Escribí el monto en <b>Propia</b> (cosecha con máquina propia), en <b>Contratada</b> (cosecha con contratista) o en las dos, si la empresa usó las dos. El campo que no corresponda dejalo vacío.</li>
+    <li>Mirá la línea de abajo: muestra las labores propias y contratadas que tiene la empresa y la cosecha total. El cuadro se actualiza en el momento, antes de guardar.</li>
+    <li>Tocá <b>Guardar cambios</b>.</li>
+  </ol>
+  <ul>
+    <li><b>Propia</b> se resta de <b>Labores Propias</b> y <b>Contratada</b>, de <b>Labores Contratadas</b>. La fila <b>Cosecha</b> del cuadro muestra la suma.</li>
+    <li>El margen bruto <b>no cambia</b>: la cosecha solo pasa de la fila de labores a la fila Cosecha.</li>
+    <li>Un monto no puede ser mayor que la labor de la que se resta, porque la labor quedaría en negativo. En ese caso el campo se marca en rojo y no se puede guardar. Si la empresa tiene varios cultivos en la campaña, se toma la labor más baja entre ellos.</li>
+    <li>Ambos campos vacíos = sin cosecha cargada: la fila Cosecha queda en 0 y las labores no se tocan. Para sacar una cosecha, borrá los dos montos y guardá.</li>
+  </ul>
+  <div class="tip"><b>Ejemplo</b>Una empresa con Labores Propias 65 y Contratadas 56 cosechó una parte con su máquina y otra con un contratista. Cargás Propia 35 y Contratada 40. En el cuadro, Labores Propias pasa a 30, Labores Contratadas a 16 y Cosecha a 75. El margen bruto queda igual.</div>
+  <p>Al tocar <b>Guardar cambios</b> (te pide tu nombre), los cambios quedan en la hoja de configuración de Drive y <b>los ve todo el que abra el link</b>. Cada cambio queda registrado en un historial con fecha, autor, valor anterior y nuevo.</p>
+</section>
+
+<!-- 15 -->
+<section id="celular" class="keep">
+  <h2><span class="n">15</span>En el celular</h2>
+  <figure class="phones"><img src="img/21-celular.jpg" alt="Dashboard en el celular"><img src="img/22-celular-menu.jpg" alt="Menú en el celular"></figure>
+  <p>El dashboard se adapta al celular. Las vistas y los botones <b>Configuración</b> y <b>Actualizar datos</b> están en el menú (☰, arriba a la derecha); el «?» abre esta ayuda. Los gráficos se pueden tocar para ver los valores.</p>
+</section>
+
+<!-- 16 -->
+<section id="glosario">
+  <h2><span class="n">16</span>Glosario y cómo se calcula cada número</h2>
+  <table>
+    <tr><th>Término</th><th>Qué es / cómo se calcula</th></tr>
+    <tr><td>Promedio ponderado</td><td>Cada empresa pesa según sus hectáreas: Σ(valor × ha) ÷ Σ ha. Se usa para todos los promedios.</td></tr>
+    <tr><td>Rendimiento</td><td>kg/ha promedio de los lotes, ponderado por superficie. Un lote sin rinde cargado cuenta como 0.</td></tr>
+    <tr><td>Cotización</td><td>Precio en u$s/tn. Con «Hoja o manual»: el de la hoja <i>Cotizacion</i> por cultivo y campaña (promedio CAC-BCR) o el que escribas a mano. Con «Ingreso / rinde»: Σ(ingreso × ha) ÷ Σ(rinde × ha) × 1.000 de los lotes de esa empresa, sub-zona, zona o región.</td></tr>
+    <tr><td>Ingreso</td><td>u$s/ha. Con «Hoja o manual»: rendimiento × cotización ÷ 1.000. Con «Ingreso / rinde»: la columna <i>Ingreso</i> de la base; si es 0, rendimiento × cotización de la hoja ÷ 1.000.</td></tr>
+    <tr><td>Total tareas</td><td>Labores propias + labores contratadas + tareas propias + tareas contratistas + cosecha.</td></tr>
+    <tr><td>Total por rubros</td><td>Semillas + herbicidas + insecticidas + fungicidas + fertilizantes + varios + otros + gastos fijos + gastos variables.</td></tr>
+    <tr><td>Gastos directos</td><td>Total tareas + total por rubros. <b>No</b> incluye el arriendo.</td></tr>
+    <tr><td>Margen bruto (MB)</td><td>Ingreso − gastos directos (u$s/ha).</td></tr>
+    <tr><td>Arriendo</td><td>u$s/ha por empresa, sub-zona y campaña (panel de administración o hoja <i>Arriendo</i>).</td></tr>
+    <tr><td>Margen después de arriendo</td><td>Margen bruto − arriendo.</td></tr>
+    <tr><td>Gastos directos + arriendo</td><td>Solo en Análisis por Cliente con «Margen: Con arriendo»: los gastos directos más el arriendo. Con esa suma se calculan el peso de cada rubro, el punto de indiferencia y el % de incidencia de esa vista.</td></tr>
+    <tr><td>Margen total</td><td>Σ(margen × ha): dólares totales que deja la selección.</td></tr>
+    <tr><td>Punto de indiferencia</td><td>Gastos directos ÷ cotización × 1.000. Los kg/ha necesarios para cubrir los gastos directos.</td></tr>
+    <tr><td>% Incidencia</td><td>Punto de indiferencia ÷ rendimiento. Qué parte de la cosecha se va en pagar los gastos.</td></tr>
+    <tr><td>Margen de seguridad</td><td>(Rinde − punto de indiferencia) ÷ rinde. Cuánto podría caer el rinde antes de dar pérdida.</td></tr>
+    <tr><td>Precio de indiferencia</td><td>La cotización a la que el margen sería 0 con el rinde actual.</td></tr>
+    <tr><td>Cosecha</td><td>Cosecha propia + cosecha contratada, cargadas en el panel por empresa y campaña. La propia se resta de Labores Propias y la contratada, de Labores Contratadas, para no contarla dos veces.</td></tr>
+  </table>
+</section>
+
+<!-- 17 -->
+<section id="recetas" class="keep">
+  <h2><span class="n">17</span>Recetas rápidas</h2>
+  <h3>Preparar la reunión con un cliente</h3>
+  <ol class="steps"><li>Filtrá su <b>Empresa</b> y su <b>Sub-zona</b>.</li><li>Abrí <b>Análisis</b>: ahí tenés su puesto, de dónde sale la diferencia con el total y con su sub-zona, y en qué rubros gasta de más.</li><li>En <b>Análisis por Cliente</b>, elegilo y mirá sus costos, su rinde y sus establecimientos, sub-zona por sub-zona.</li><li>En <b>Detalle por lote</b>, ordená por «Diferencia» para ver sus peores lotes.</li><li>Si querés llevarle algo impreso, activá el <b>modo anónimo</b> y descargá el <b>PDF</b>.</li></ol>
+  <h3>Que el dashboard abra siempre en tu zona</h3>
+  <ol class="steps"><li>Filtrá tu <b>Sub-zona</b> (o zona, o región), elegí «Analizar por» y el margen que más usás.</li><li>Tocá <b>⚙ Configuración</b> → <b>Usar los filtros de ahora</b>. En Campaña marcá <b>La más reciente</b>.</li><li>Tocá <b>Guardar como predeterminado</b>. Para tenerlo también en el celular, tocá <b>Copiar mi link</b> y mandátelo.</li></ol>
+  <h3>Comparar sub-zonas entre sí</h3>
+  <ol class="steps"><li><b>Analizar por: Sub-zona</b> (el dashboard ya arranca así).</li><li>Mirá <b>Márgenes</b> y el <b>Cuadro de margen bruto</b>: cada columna es una sub-zona.</li><li>Para entender una en particular, elegila en el filtro <b>Sub-zona</b> y abrí <b>Análisis</b>.</li></ol>
+  <h3>Ver qué pasa con otro precio</h3>
+  <ol class="steps"><li>Escribí la cotización en el casillero <b>Cotización u$s/tn</b>: todo se recalcula (pasa solo a «Hoja o manual»).</li><li>O usá el <b>Simulador</b> para mover precio y rinde sin tocar el resto.</li><li>Tocá «Usar la de la hoja» para volver.</li></ol>
+  <h3>Ver a qué precio calculó el ingreso cada cliente</h3>
+  <ol class="steps"><li>En <b>Cotización según</b>, elegí <b>Ingreso / rinde</b>.</li><li><b>Analizar por: Empresa</b> y abrí el <b>Cuadro de margen bruto</b>: la fila Cotización muestra el precio de cada una.</li><li>Ordená o compará contra la hoja: una cotización muy por debajo o por encima del resto suele ser un ingreso mal cargado en el Excel. En <b>Detalle por lote</b> buscás el lote puntual.</li></ol>
+  <h3>Ver el impacto del arriendo</h3>
+  <ol class="steps"><li>Elegí <b>Margen: Con arriendo</b>.</li><li>Mirá la tarjeta <b>Arriendo</b> y cómo cambia el ranking en <b>Márgenes</b>.</li><li>En <b>Costos → Del ingreso al margen</b> aparece el escalón del arriendo.</li><li>En <b>Análisis por Cliente</b> el arriendo se suma como un rubro más, para ver cuánto pesa en el gasto de ese cliente.</li></ol>
+  <h3>Comparar solo un par de rubros</h3>
+  <ol class="steps"><li>Andá a <b>Costos</b>.</li><li>Clic en «Semillas» en la leyenda, y <span class="kbd">Shift</span> + clic en «Fertilizantes».</li><li>Pasá a «% del gasto» para ver qué parte del gasto le dedica cada uno.</li></ol>
+</section>
+
+<!-- 18 -->
+<section id="faq">
+  <h2><span class="n">18</span>Preguntas frecuentes</h2>
+  <h3>¿Por qué los números no coinciden con mi planilla?</h3>
+  <p>Revisá que estén los mismos filtros (cultivo, campaña, empresas), la misma cotización (y si sale de la hoja o del ingreso) y si estás «Con» o «Sin arriendo». Los promedios son siempre ponderados por hectárea, y la cosecha es la que se cargó en el panel (se resta de las labores, así que esas dos filas pueden no coincidir con el Excel).</p>
+  <h3>¿Por qué la cotización es distinta en cada empresa?</h3>
+  <p>Porque está elegido <b>Cotización según: Ingreso / rinde</b>: el precio sale del ingreso cargado en cada lote (ingreso ÷ rinde × 1.000). Si querés el mismo precio para todos, elegí <b>Hoja o manual</b>. Si una empresa da muy distinto del resto, revisá la columna <i>Ingreso</i> de sus lotes en el Excel.</p>
+  <h3>Abajo dice que «N lotes sin ingreso usan la hoja Cotizacion».</h3>
+  <p>Esos lotes tienen la columna <i>Ingreso</i> en 0, así que con «Ingreso / rinde» se calculan con la cotización de la hoja. Cuando se cargue su ingreso en el Excel y se toque <b>Actualizar datos</b>, pasan a usar su propio precio.</p>
+  <h3>La fila Cosecha está en 0 o abajo del cuadro dice «no tiene cosecha cargada».</h3>
+  <p>A esa empresa todavía no se le cargó la cosecha de esa campaña. Con la clave, entrá a <a href="#cosecha">Administrar empresas</a> y cargá el monto propio, el contratado o los dos. Mientras tanto, el costo de cosecha queda dentro de las labores y el margen bruto es el mismo.</p>
+  <h3>No me deja guardar la cosecha.</h3>
+  <p>El monto es mayor que las labores de las que se resta: la línea en rojo dice cuánto hay disponible. Revisá si va en Propia o en Contratada, o repartilo entre las dos.</p>
+  <h3>Subí un Excel y no aparece.</h3>
+  <p>Tocá <b>Actualizar datos</b>. Si sigue sin aparecer, mirá <b>Calidad de datos</b>: puede que al archivo le falte la hoja <i>Base Cultivos</i> o alguna columna, o que su nombre empiece con «_» o «~».</p>
+  <h3>Aparece «Empresa N1» o un código raro.</h3>
+  <p>Es una empresa sin código en la columna <i>Abreviatura</i>. Se le asigna uno provisorio hasta que se cargue en el Excel.</p>
+  <h3>Un gráfico quedó mostrando un solo rubro.</h3>
+  <p>Se tocó una referencia de la leyenda. Hacé clic sobre la referencia que quedó y vuelven todas.</p>
+  <h3>¿Puedo mandar el link a un cliente?</h3>
+  <p>Sí. Sin la clave solo se ven códigos o los nombres de referencia que se hayan habilitado. El cliente ve a todas las empresas en forma anónima.</p>
+  <h3>Guardé mi configuración y en el celular no aparece.</h3>
+  <p>La configuración se guarda en cada navegador. En el celular, guardala de nuevo o abrí <a href="#mi-link">tu link</a>.</p>
+  <h3>Abrí un link y no arrancó con mi configuración.</h3>
+  <p>Si el link trae una configuración, esa tiene prioridad. Tocá <b>Mi configuración</b> (al lado de «Limpiar filtros») para volver a la tuya, o abrí el dashboard con el link común.</p>
+  <h3>En Análisis por Cliente no veo las tarjetas de indicadores.</h3>
+  <p>Es a propósito: esa vista es solo de gráficos y los indicadores del cliente están en el primer gráfico. Al volver a cualquier otra vista, las tarjetas aparecen de nuevo.</p>
+  <h3>En Análisis por Cliente, «Por sub-zona» y «Total del cliente» dan igual.</h3>
+  <p>Pasa cuando el cliente tiene lotes en una sola sub-zona con los filtros elegidos. El gráfico lo avisa en el subtítulo.</p>
+  <h3>Dice «Sin conexión con Drive».</h3>
+  <p>El servidor no respondió y se muestran los últimos datos guardados. Probá en un rato con <b>Actualizar datos</b>.</p>
+</section>
+
+<p class="foot">Synagro · Comparativo de Cultivos · <a href="https://comparativo-synagro.netlify.app/">comparativo-synagro.netlify.app</a></p>
+</main>
+</div>
+</body>
+</html>
