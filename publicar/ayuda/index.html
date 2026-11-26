@@ -123,7 +123,8 @@ td:first-child{font-weight:700;white-space:nowrap}
     <a href="#config">14. Configuración y empresas</a>
     <a class="sub" href="#preferencias">Mis preferencias</a>
     <a class="sub" href="#mi-link">Tu link</a>
-    <a class="sub" href="#admin">Administrar empresas</a>
+    <a class="sub" href="#mis-clientes">Mis clientes y nombres</a>
+    <a class="sub" href="#admin">Arriendos y cosecha</a>
     <a class="sub" href="#cosecha">Cargar la cosecha</a>
     <a href="#celular">15. En el celular</a>
     <a href="#glosario">16. Glosario y cálculos</a>
@@ -186,6 +187,11 @@ td:first-child{font-weight:700;white-space:nowrap}
   </ol>
   <figure class="narrow"><img style="width:420px" src="img/25-mi-configuracion.jpg" alt="Botón Mi configuración"><figcaption>«Mi configuración» aparece solo si guardaste una en este navegador.</figcaption></figure>
   <figure class="narrow"><img src="img/03-seleccion-multiple.jpg" alt="Lista de selección múltiple"><figcaption>Selección múltiple: marcá una o varias empresas. La lista se cierra al tocar afuera.</figcaption></figure>
+  <h3 id="lista-empresas">Tus clientes a mano en el filtro Empresa</h3>
+  <p>Si marcaste tus clientes en <a href="#mis-clientes">Mis clientes y nombres</a>, en los filtros aparece <b>Lista de empresas</b> con dos opciones: <b>Todas</b> (orden alfabético) y <b>Mis clientes arriba</b>. Con la segunda, la lista del filtro <b>Empresa</b> muestra primero tus clientes y debajo las otras empresas.</p>
+  <figure class="narrow"><img style="width:560px" src="img/31-lista-empresas-boton.jpg" alt="Botón Lista de empresas"></figure>
+  <figure class="narrow"><img style="width:260px" src="img/30-mis-clientes-filtro.jpg" alt="Filtro Empresa con mis clientes arriba"><figcaption>Con «Mis clientes arriba», tus clientes quedan primero en la lista.</figcaption></figure>
+  <div class="tip"><b>Solo cambia el orden de la lista</b>No filtra nada: los gráficos, el cuadro, el análisis y el PDF siguen mostrando todas las empresas según los filtros que elijas. Para ver solo un cliente, marcalo en la lista como siempre. Para que arranque así, elegilo en <a href="#preferencias">Mis preferencias</a>.</div>
   <div class="tip"><b>Atajo: filtrar desde un gráfico</b>En los gráficos de barras de <i>Márgenes</i> y <i>Costos</i>, hacer <b>clic en una barra</b> filtra por esa empresa (o sub-zona, zona o región, según «Analizar por»). Otro clic sobre la misma barra quita el filtro.</div>
 
   <h3 id="cotizacion">Cotización y arriendo</h3>
@@ -201,7 +207,7 @@ td:first-child{font-weight:700;white-space:nowrap}
   <h3 id="anonimo">Modo anónimo</h3>
   <figure class="narrow"><img src="img/19-clave.jpg" alt="Pedido de clave"></figure>
   <ul>
-    <li><b>Activado</b> (así arranca siempre): cada empresa aparece como <b>«Empresa» + su código</b> (por ejemplo <i>Empresa SA</i>), o con el <b>nombre de referencia</b> que se le haya puesto en el panel de administración. Los establecimientos se ven como <i>Empresa SA · Est. 1</i> y los lotes como <i>Lote 12</i>.</li>
+    <li><b>Activado</b> (así arranca siempre): cada empresa aparece como <b>«Empresa» + su código</b> (por ejemplo <i>Empresa SA</i>), o con el <b>nombre de referencia</b> que le hayas puesto vos en <a href="#mis-clientes">Mis clientes y nombres</a> (cada asesor ve los suyos). Los establecimientos se ven como <i>Empresa SA · Est. 1</i> y los lotes como <i>Lote 12</i>.</li>
     <li><b>Desactivado:</b> la página pide la <b>clave</b>. Con la clave correcta se ven los nombres reales y aparece el botón <b>Administrar empresas</b>, que abre esa parte de <a href="#config">Configuración</a>. El acceso dura 30 minutos o hasta cerrar la pestaña.</li>
   </ul>
   <div class="warn"><b>Antes de compartir pantalla o mandar un PDF</b>Volvé a activar el modo anónimo. El PDF y el CSV salen con los nombres que se ven en ese momento.</div>
@@ -430,17 +436,18 @@ td:first-child{font-weight:700;white-space:nowrap}
 <!-- 14 -->
 <section id="config">
   <h2><span class="n">14</span>Configuración y administración de empresas</h2>
-  <p>El botón <b>⚙ Configuración</b> está en el menú azul, arriba de <b>Actualizar datos</b> (en el celular, dentro del menú ☰). Abre un panel con dos partes: <b>Mis preferencias</b>, que puede usar cualquiera, y <b>Administración de empresas</b>, que necesita la clave.</p>
+  <p>El botón <b>⚙ Configuración</b> está en el menú azul, arriba de <b>Actualizar datos</b> (en el celular, dentro del menú ☰). Abre un panel con tres partes: <b>Mis preferencias</b> y <b>Mis clientes y nombres</b>, que puede usar cualquiera sin clave y quedan guardadas solo en tu navegador, y <b>Administración de empresas: arriendos y cosecha</b>, que necesita la clave y vale para todos.</p>
   <figure><img src="img/23-configuracion.jpg" alt="Panel de configuración"></figure>
   <ol class="mk">
-    <li><b>Mis preferencias.</b> Con qué arranca el dashboard: cultivo, campaña, región, zona, sub-zona, «Analizar por», margen (con o sin arriendo) y <b>cotización según</b> (hoja o manual / ingreso ÷ rinde). Región, zona y sub-zona van encadenadas: si elegís una región, la lista de zonas muestra solo las de esa región, y lo mismo pasa con las sub-zonas.</li>
+    <li><b>Mis preferencias.</b> Con qué arranca el dashboard: cultivo, campaña, región, zona, sub-zona, «Analizar por», margen (con o sin arriendo), <b>cotización según</b> (hoja o manual / ingreso ÷ rinde) y <b>Lista de empresas en filtros</b> (todas en orden alfabético / mis clientes arriba). Región, zona y sub-zona van encadenadas: si elegís una región, la lista de zonas muestra solo las de esa región, y lo mismo pasa con las sub-zonas.</li>
     <li><b>Guardar como predeterminado.</b> Desde ese momento, cada vez que abras el dashboard <b>en este navegador</b> arranca así. Los filtros se pueden seguir cambiando como siempre.</li>
     <li><b>Usar los filtros de ahora.</b> Copia al formulario lo que tenés filtrado en este momento. Es la forma más rápida: armá la vista que te gusta, tocá este botón y después <b>Guardar</b>.</li>
     <li><b>Copiar mi link.</b> Copia un link que abre el dashboard con esta configuración (ver <a href="#mi-link">Tu link</a>).</li>
     <li><b>El link.</b> Queda a la vista por si preferís copiarlo a mano.</li>
-    <li><b>Restablecer.</b> Borra tu configuración y el dashboard vuelve a arrancar con la general: Maíz, todas las campañas y zonas, por sub-zona, sin arriendo y con la cotización de la hoja.</li>
+    <li><b>Restablecer.</b> Borra tu configuración y el dashboard vuelve a arrancar con la general: Maíz, todas las campañas y zonas, por sub-zona, sin arriendo, con la cotización de la hoja y la lista de empresas en orden alfabético. No borra tus clientes ni tus nombres.</li>
     <li><b>Qué tenés guardado.</b> Un resumen de la configuración guardada en este navegador.</li>
-    <li><b>Administración de empresas.</b> Sin la clave muestra el botón <b>Ingresar clave</b>; con la clave aparece la tabla de empresas (ver <a href="#admin">más abajo</a>).</li>
+    <li><b>Mis clientes y nombres.</b> Tus clientes, el nombre con que los mostrás y si se muestran al público. Es personal: no le cambia nada a los demás asesores (ver <a href="#mis-clientes">más abajo</a>).</li>
+    <li><b>Administración de empresas: arriendos y cosecha.</b> Sin la clave muestra el botón <b>Ingresar clave</b>; con la clave aparece la tabla de empresas (ver <a href="#admin">más abajo</a>).</li>
   </ol>
 
   <h3 id="preferencias">Mis preferencias</h3>
@@ -449,6 +456,7 @@ td:first-child{font-weight:700;white-space:nowrap}
     <li><b>Se guarda en el navegador</b>, no en una cuenta: no hace falta usuario ni clave. Cada persona tiene la suya y no le cambia nada a los demás.</li>
     <li>Si usás el dashboard en la compu y en el celular, se configura una vez en cada uno, o se usa <a href="#mi-link">tu link</a> en los dos.</li>
     <li>Si borrás los datos de navegación o usás una ventana de incógnito, la configuración no se guarda. El link sigue funcionando igual.</li>
+    <li><b>Lista de empresas en filtros:</b> con «Mis clientes arriba», el filtro Empresa muestra primero los clientes que marcaste en <a href="#mis-clientes">Mis clientes y nombres</a>. No filtra los gráficos (ver <a href="#lista-empresas">Tus clientes a mano en el filtro Empresa</a>). Esta opción no viaja en el link.</li>
     <li>Si algo de lo guardado ya no existe en los datos (por ejemplo, una sub-zona que dejó de cargarse), esa parte se ignora y el resto se aplica igual.</li>
   </ul>
 
@@ -459,15 +467,34 @@ td:first-child{font-weight:700;white-space:nowrap}
     <li>Al abrir el dashboard, primero manda <b>el link</b>, después lo que tengas <b>guardado en el navegador</b> y, si no hay nada, la configuración <b>general</b>.</li>
   </ul>
 
-  <h3 id="admin">Administrar empresas (solo con clave)</h3>
+  <h3 id="mis-clientes">Mis clientes y nombres</h3>
+  <p>Cada asesor arma su propia lista: qué empresas son sus clientes y con qué nombre las muestra. <b>Se guarda en tu navegador</b>, no pide clave y <b>no le cambia nada a los demás</b>: si dos asesores están usando el dashboard al mismo tiempo con clientes distintos, cada uno ve sus nombres.</p>
+  <figure><img src="img/29-mis-clientes.jpg" alt="Mis clientes y nombres"></figure>
+  <ol class="mk">
+    <li><b>Ver.</b> <i>Todas las empresas</i> para marcar tus clientes; <i>Solo mis clientes</i> para ver nada más los que ya marcaste.</li>
+    <li><b>Buscar.</b> Por código o por el nombre que le pusiste (con la clave, también por el nombre real).</li>
+    <li><b>Mi cliente.</b> Marcá tus clientes. Sirve para tenerlos primero en el filtro Empresa (ver <a href="#lista-empresas">más arriba</a>).</li>
+    <li><b>Nombre de referencia.</b> Cómo querés que aparezca la empresa (ej.: «Finca del Tala»). Máximo 40 caracteres.</li>
+    <li><b>Mostrar al público.</b> <b>Sí</b>: en gráficos, cuadro y PDF aparece el nombre de referencia. <b>No</b>: aparece «Empresa + código». Con «Sí» y sin nombre escrito, se sigue viendo el código y la página avisa.</li>
+    <li><b>Así se ve.</b> Cómo va a aparecer en el dashboard y en el PDF.</li>
+    <li><b>Borrar mis clientes y nombres.</b> Borra todo lo de esta sección en este navegador. Pide tocarlo dos veces para confirmar.</li>
+  </ol>
+  <ul>
+    <li><b>Se guarda solo,</b> en el momento: no hay botón de guardar.</li>
+    <li><b>Sin clave</b> ves los códigos. <b>Con la clave</b> aparece también la columna <b>Nombre real</b>, para reconocer a cada cliente mientras configurás. El nombre real <b>no se guarda</b>: solo queda lo que escribas vos.</li>
+    <li>Si el nombre de referencia es igual al nombre real, la página avisa: el público va a ver el nombre del cliente.</li>
+    <li>Con el <b>modo anónimo desactivado</b> (con clave) se ven los nombres reales, como siempre.</li>
+    <li>Como queda en el navegador, en otra compu o en el celular hay que cargarlo de nuevo. Tampoco se guarda en una ventana de incógnito.</li>
+  </ul>
+
+  <h3 id="admin">Administración de empresas: arriendos y cosecha (solo con clave)</h3>
+  <div class="info"><b>Los nombres ya no van acá</b>El nombre de referencia y «Mostrar al público» pasaron a <a href="#mis-clientes">Mis clientes y nombres</a>, para que cada asesor configure los suyos. Esta tabla queda para lo que vale para todos: arriendos y cosecha.</div>
   <p>Con la clave, al desactivar el modo anónimo (o con <b>Ingresar clave</b> en Configuración) se habilita la tabla de empresas, también desde el botón <b>Administrar empresas</b> de los filtros. Arriba de la tabla hay un filtro de <b>región, zona y sub-zona</b> que arranca con tus preferencias, para ver solo los clientes de tu zona. Podés elegir todas, una o varias.</p>
   <div class="tip"><b>El filtro solo ordena</b>No le saca permisos a nadie: con la clave se pueden ver y editar todas las empresas. Si editás una empresa y después queda oculta por el filtro, el cambio no se pierde y se guarda junto con los demás.</div>
   <p>Una fila por empresa:</p>
   <table>
     <tr><th>Columna</th><th>Para qué sirve</th></tr>
     <tr><td>Código</td><td>El de la columna <i>Abreviatura</i> del Excel. Se cambia en el Excel.</td></tr>
-    <tr><td>Nombre de referencia</td><td>Cómo se muestra al público si se habilita (ej.: «Cliente Metán 1»). Máximo 40 caracteres. Si es igual al nombre real, la página avisa antes de guardar.</td></tr>
-    <tr><td>Mostrar al público</td><td><b>No</b>: el público ve «Empresa + código». <b>Sí</b>: ve el nombre de referencia. Ojo: con «Sí» y el nombre de referencia vacío, el público ve el <b>nombre real</b>.</td></tr>
     <tr><td>Arriendo manual</td><td>Por campaña y sub-zona, en u$s/ha. Vacío = usar la hoja <i>Arriendo</i>; 0 = sin arriendo; un número = ese valor. Se marca con * en el cuadro y el PDF.</td></tr>
     <tr><td>Cosecha</td><td>Por campaña, dos montos en u$s/ha: <b>Propia</b> y <b>Contratada</b> (ver abajo).</td></tr>
   </table>
@@ -525,9 +552,11 @@ td:first-child{font-weight:700;white-space:nowrap}
 <section id="recetas" class="keep">
   <h2><span class="n">17</span>Recetas rápidas</h2>
   <h3>Preparar la reunión con un cliente</h3>
-  <ol class="steps"><li>Filtrá su <b>Empresa</b> y su <b>Sub-zona</b>.</li><li>Abrí <b>Análisis</b>: ahí tenés su puesto, de dónde sale la diferencia con el total y con su sub-zona, y en qué rubros gasta de más.</li><li>En <b>Análisis por Cliente</b>, elegilo y mirá sus costos, su rinde y sus establecimientos, sub-zona por sub-zona.</li><li>En <b>Detalle por lote</b>, ordená por «Diferencia» para ver sus peores lotes.</li><li>Si querés llevarle algo impreso, activá el <b>modo anónimo</b> y descargá el <b>PDF</b>.</li></ol>
+  <ol class="steps"><li>Filtrá su <b>Empresa</b> y su <b>Sub-zona</b>.</li><li>Abrí <b>Análisis</b>: ahí tenés su puesto, de dónde sale la diferencia con el total y con su sub-zona, y en qué rubros gasta de más.</li><li>En <b>Análisis por Cliente</b>, elegilo y mirá sus costos, su rinde y sus establecimientos, sub-zona por sub-zona.</li><li>En <b>Detalle por lote</b>, ordená por «Diferencia» para ver sus peores lotes.</li><li>Si querés que en el PDF aparezca su nombre, en <b>⚙ Configuración → Mis clientes y nombres</b> escribí su nombre de referencia y activá <b>Mostrar al público</b>.</li><li>Si querés llevarle algo impreso, activá el <b>modo anónimo</b> y descargá el <b>PDF</b>.</li></ol>
   <h3>Que el dashboard abra siempre en tu zona</h3>
   <ol class="steps"><li>Filtrá tu <b>Sub-zona</b> (o zona, o región), elegí «Analizar por» y el margen que más usás.</li><li>Tocá <b>⚙ Configuración</b> → <b>Usar los filtros de ahora</b>. En Campaña marcá <b>La más reciente</b>.</li><li>Tocá <b>Guardar como predeterminado</b>. Para tenerlo también en el celular, tocá <b>Copiar mi link</b> y mandátelo.</li></ol>
+  <h3>Tener tus clientes a mano en los filtros</h3>
+  <ol class="steps"><li>Tocá <b>⚙ Configuración</b> y, en <b>Mis clientes y nombres</b>, activá <b>Mi cliente</b> en cada uno de los tuyos.</li><li>En <b>Mis preferencias</b>, elegí <b>Lista de empresas en filtros: Mis clientes arriba</b> y tocá <b>Guardar como predeterminado</b>.</li><li>Desde ahora, en el filtro <b>Empresa</b> tus clientes aparecen primero. Los gráficos siguen mostrando todas las empresas.</li></ol>
   <h3>Comparar sub-zonas entre sí</h3>
   <ol class="steps"><li><b>Analizar por: Sub-zona</b> (el dashboard ya arranca así).</li><li>Mirá <b>Márgenes</b> y el <b>Cuadro de margen bruto</b>: cada columna es una sub-zona.</li><li>Para entender una en particular, elegila en el filtro <b>Sub-zona</b> y abrí <b>Análisis</b>.</li></ol>
   <h3>Ver qué pasa con otro precio</h3>
@@ -560,7 +589,11 @@ td:first-child{font-weight:700;white-space:nowrap}
   <h3>Un gráfico quedó mostrando un solo rubro.</h3>
   <p>Se tocó una referencia de la leyenda. Hacé clic sobre la referencia que quedó y vuelven todas.</p>
   <h3>¿Puedo mandar el link a un cliente?</h3>
-  <p>Sí. Sin la clave solo se ven códigos o los nombres de referencia que se hayan habilitado. El cliente ve a todas las empresas en forma anónima.</p>
+  <p>Sí. Sin la clave solo se ven códigos. Los nombres de referencia son de cada asesor y quedan en su navegador: el cliente, en su celular o su compu, ve todas las empresas con su código. Si querés que vea su nombre, mostrale tu pantalla o mandale el PDF.</p>
+  <h3>Les puse nombre a mis clientes y mi compañero no los ve.</h3>
+  <p>Es así a propósito: <a href="#mis-clientes">Mis clientes y nombres</a> es personal. Cada asesor configura los suyos y no le cambia nada a los demás.</p>
+  <h3>Cambié de compu y no están mis clientes ni mis nombres.</h3>
+  <p>Se guardan en cada navegador. Hay que marcarlos de nuevo en la otra compu o en el celular.</p>
   <h3>Guardé mi configuración y en el celular no aparece.</h3>
   <p>La configuración se guarda en cada navegador. En el celular, guardala de nuevo o abrí <a href="#mi-link">tu link</a>.</p>
   <h3>Abrí un link y no arrancó con mi configuración.</h3>
