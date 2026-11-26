@@ -425,6 +425,10 @@ html{overflow-x:clip}
 .cfg-link input{flex:1 1 320px;height:34px;border:1px solid var(--line-2);border-radius:8px;padding:0 8px;background:var(--panel-2);color:var(--fg);font-size:13px}
 .config .admin{margin-top:0}
 .adm-filt .note{flex:1 1 260px;margin:0}
+#misQ{height:36px;border:1px solid var(--line-2);border-radius:8px;padding:0 10px;background:var(--panel);color:var(--fg);min-width:220px}
+#misTable td.seen{font-size:13px;color:var(--muted)}
+#misTable .warnref[hidden]{display:none}
+.ms .menu .mshead{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);padding:6px 8px 2px;border-top:1px solid var(--line);margin-top:4px}
 /* Análisis por Cliente */
 .cli-bar{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:flex-end;background:var(--panel);border-radius:var(--r);box-shadow:var(--sh);padding:14px 18px}
 .cli-bar .f select{min-width:220px}
@@ -507,6 +511,10 @@ html{overflow-x:clip}
           <button type="button" data-v="ing" title="Ingreso ÷ rinde × 1000 de cada lote. Los lotes sin ingreso usan la hoja Cotizacion.">Ingreso / rinde</button><button type="button" data-v="hoja" title="La de la hoja Cotizacion, o la que escribas en el recuadro, para todos los lotes.">Hoja o manual</button>
         </div></div>
       <div class="f"><label for="fCot">Cotización u$s/tn</label><div class="cot-row"><input type="number" id="fCot" step="0.01" min="0"><button type="button" class="linkbtn" id="btnCotHoja" hidden>Usar la de la hoja</button></div></div>
+      <div class="f" id="fMiosBox" hidden title="Cambia el orden de la lista del filtro Empresa; no filtra los gráficos"><span class="lab">Lista de empresas</span>
+        <div class="seg" id="segMios" role="group" aria-label="Clientes">
+          <button type="button" data-v="todos">Todas</button><button type="button" data-v="mios">Mis clientes arriba</button>
+        </div></div>
       <div class="f"><span class="lab">Modo anónimo</span>
         <label class="switch"><input type="checkbox" id="fAnon"> <span id="anonTxt">Activado: clientes ocultos</span></label></div>
       <div class="actions"><button type="button" class="btn" id="btnClear">Limpiar filtros</button>
@@ -542,14 +550,24 @@ html{overflow-x:clip}
       <div class="note" id="cfgMsg" role="status"></div>
       <div class="cfg-status" id="cfgStatus"></div>
     </div>
+    <div class="cfg-block" id="misBlock">
+      <h3>Mis clientes y nombres</h3>
+      <p class="note">Solo para vos: se guarda en este navegador y no cambia lo que ven los demás asesores. Marcá tus clientes, poneles un nombre de referencia y elegí si se muestra al público; si no, se ve el código (Empresa TZ). No hace falta clave: sin clave ves los códigos y, si la ingresás, ves también el nombre real mientras configurás (el nombre real no se guarda).</p>
+      <div class="adm-filt">
+        <div class="f"><span class="lab">Ver</span><div class="seg" id="misVer" role="group" aria-label="Ver"><button type="button" data-v="todas" aria-pressed="true">Todas las empresas</button><button type="button" data-v="mios" aria-pressed="false">Solo mis clientes</button></div></div>
+        <div class="f"><label for="misQ">Buscar</label><input type="text" id="misQ" placeholder="Código o nombre" maxlength="40" autocomplete="off"></div>
+      </div>
+      <div class="tbl-wrap"><table class="adm" id="misTable"></table></div>
+      <div class="cfg-actions"><button type="button" class="btn" id="btnMisReset">Borrar mis clientes y nombres</button><span class="note" id="misMsg" role="status"></span></div>
+    </div>
     <div class="cfg-block">
-      <h3>Administración de empresas</h3>
-      <div id="cfgAdmLocked"><p class="note">Necesita la clave. Al ingresarla se ven los nombres reales y se habilita la tabla de empresas, que podés filtrar por región, zona y sub-zona.</p>
+      <h3>Administración de empresas: arriendos y cosecha</h3>
+      <div id="cfgAdmLocked"><p class="note">Necesita la clave. Lo que se cargue acá (arriendos y cosecha) vale para todos. Al ingresarla se habilita la tabla de empresas, que podés filtrar por región, zona y sub-zona.</p>
         <button type="button" class="btn" id="btnCfgUnlock">Ingresar clave</button></div>
     <section class="admin" id="admin" hidden aria-labelledby="admH">
       <div class="admin-head">
         <div><h2 id="admH">Administrar empresas</h2>
-          <p class="note">Lo que guardes acá queda en la carpeta de Drive y lo ve todo el que abra el link. Si marcás «Mostrar», el público ve el nombre de referencia; si lo dejás vacío, ve el nombre real. Con «No» ve solo el código. La cosecha se carga por campaña: la propia se resta de Labores Propias y la contratada de Labores Contratadas (podés cargar las dos).</p></div>
+          <p class="note">Arriendos y cosecha: lo que guardes acá queda en la carpeta de Drive y lo ve todo el que abra el link. Los nombres de referencia y «Mostrar al público» ya no van acá: cada asesor los configura para sí en «Mis clientes y nombres». La cosecha se carga por campaña: la propia se resta de Labores Propias y la contratada de Labores Contratadas (podés cargar las dos).</p></div>
         <button type="button" class="btn" id="btnAdmClose">Cerrar</button>
       </div>
       <div class="adm-filt" id="admFilt"></div>
@@ -711,13 +729,24 @@ const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
 
 /* ---------- Estado ---------- */
 const state = {cultivo:"Maíz", campana:[], region:[], zona:[], subzona:[], empresas:[], asesor:[], estab:"",
-  grupo:"subzona", margen:"mb", anon:true, cotManual:null, cotModo:"hoja", tab:"margenes", sort:"mb", comp:"abs", wf:"__avg", simCot:null, simRend:0, lotQ:"", lotSort:{k:"empresa", d:1}, anBench:"total"};
+  grupo:"subzona", margen:"mb", anon:true, mios:false, cotManual:null, cotModo:"hoja", tab:"margenes", sort:"mb", comp:"abs", wf:"__avg", simCot:null, simRend:0, lotQ:"", lotSort:{k:"empresa", d:1}, anBench:"total"};
 
 const ARTS = ["LOS","LAS","DEL","DE","LA","EL","Y"];
 const titleCase = e => String(e).split(/\s+/).map(w => (w.length <= 3 && !ARTS.includes(w)) ? w : w.charAt(0) + w.slice(1).toLowerCase()).join(" ");
 let EMP_SUB = new Map();
 const subsOf = e => [...(EMP_SUB.get(e) || [])].sort().join(" / ");
-const nmE = e => (!state.anon && REAL && REAL.emp[e]) ? titleCase(REAL.emp[e]) : (REFS[e] ? REFS[e] : `Empresa ${e}`);
+/* ---------- Mis clientes y nombres (19/11/2026): personal de cada asesor, se guarda en este navegador ----------
+   Nombre de referencia, "Mostrar al público" y "mi cliente" no van al servidor ni afectan a los demás asesores.
+   Los nombres generales del servidor (REFS) ya no se usan. Nunca se guardan nombres reales: solo lo que escribe el asesor. */
+const MIS_KEY = "synagro_misclientes_v1";
+function misLoad(){ try { const o = JSON.parse(localStorage.getItem(MIS_KEY) || "null"); return o && o.e && typeof o.e === "object" ? o : {v:1, e:{}}; } catch(e){ return {v:1, e:{}}; } }
+let MIS = misLoad();
+function misSave(){ try { localStorage.setItem(MIS_KEY, JSON.stringify(MIS)); return true; } catch(e){ return false; } }
+const misGet = e => MIS.e[e] || {};
+const misRef = e => { const x = MIS.e[e]; return x && x.p && x.r && String(x.r).trim() ? String(x.r).trim() : ""; };
+const misMios = () => Object.keys(MIS.e).filter(k => MIS.e[k].m);
+const misSoloOn = () => !!state.mios && misMios().length > 0;
+const nmE = e => (!state.anon && REAL && REAL.emp[e]) ? titleCase(REAL.emp[e]) : (misRef(e) || `Empresa ${e}`);
 const nmEst = l => (!state.anon && REAL && REAL.est[l.empresa + "|" + l.estab]) ? REAL.est[l.empresa + "|" + l.estab] : `${nmE(l.empresa)} · Est. ${String(l.estab).replace(/^E/, "")}`;
 const nmLote = l => (!state.anon && REAL && REAL.lote[l.id]) ? REAL.lote[l.id] : `Lote ${l.id}`;
 const gname = g => state.grupo === "empresa" ? nmE(g) : g;
@@ -1252,8 +1281,11 @@ function renderFilters(){
     const vals = uniq(m.f).sort((a,b) => String(m.lab(a)).localeCompare(String(m.lab(b)), "es"));
     state[m.k] = state[m.k].filter(v => vals.includes(v));
     const sel = state[m.k];
+    const item = v => `<label><input type="checkbox" value="${esc(v)}"${sel.includes(v) ? " checked" : ""}> ${esc(m.lab(v))}</label>`;
+    // 19/11: con "Mis clientes" (preferencia o botón de los filtros), en Empresa van primero los clientes del asesor; solo cambia el orden de la lista
+    const mios = m.k === "empresas" && misSoloOn() ? new Set(misMios()) : null, top = mios ? vals.filter(v => mios.has(v)) : [];
     $(m.id + "Menu").innerHTML = `<label class="all"><input type="checkbox" data-all="1"${sel.length ? "" : " checked"}> ${m.all}</label>` +
-      vals.map(v => `<label><input type="checkbox" value="${esc(v)}"${sel.includes(v) ? " checked" : ""}> ${esc(m.lab(v))}</label>`).join("");
+      (top.length ? `<div class="mshead">Mis clientes</div>` + top.map(item).join("") + `<div class="mshead">Otras empresas</div>` + vals.filter(v => !mios.has(v)).map(item).join("") : vals.map(item).join(""));
     $(m.id + "Sum").textContent = !sel.length ? m.all : sel.length === 1 ? m.lab(sel[0]) : `${sel.length} ${m.pl}`;
   }
   const ests = [...new Map(base.filter(l => !state.empresas.length || state.empresas.includes(l.empresa)).map(l => [l.empresa + "|" + l.estab, l])).values()];
@@ -1268,6 +1300,7 @@ function renderFilters(){
   $("fCot").value = cotManualOn() ? state.cotManual : (RES ? +RES.total.cot.toFixed(2) : "");
   $("btnCotHoja").hidden = !cotManualOn();
   $("fAnon").checked = state.anon;
+  if ($("fMiosBox")){ $("fMiosBox").hidden = !misMios().length; document.querySelectorAll("#segMios button").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === (misSoloOn() ? "mios" : "todos"))); }
   $("anonTxt").textContent = state.anon ? "Activado: clientes ocultos" : "Desactivado: nombres visibles";
 }
 function headerTexts(res){
@@ -1521,6 +1554,7 @@ function filtersSummary(){
   return f;
 }
 async function buildPdf(){
+  if (!RES || !filteredLots().length){ toast("No hay datos con estos filtros para armar el PDF (¿«Mis clientes» sin lotes de este cultivo?)", 4500); return; }
   const btn = $("btnPdf"); btn.disabled = true; const old = btn.textContent; btn.textContent = "Armando PDF…";
   try {
     await new Promise(r => setTimeout(r, 30));
@@ -1704,7 +1738,7 @@ function loadData(d){
   DATA = d; HAY_ING = (d.k || []).includes("ing");
   LOTS = d.r.map(a => { const o = {}; d.k.forEach((k, i) => o[k] = a[i]); return o; });
   LOTS.forEach((l, i) => l._i = i);
-  PARAMS = d.params || {}; PARAMS0 = JSON.parse(JSON.stringify(PARAMS)); ARR = d.arr || {}; COT = d.cot || {}; REFS = d.refs || {}; AVISOS = d.avisos || [];
+  PARAMS = d.params || {}; PARAMS0 = JSON.parse(JSON.stringify(PARAMS)); ARR = d.arr || {}; COT = d.cot || {}; REFS = {}; /* 19/11: los nombres generales del servidor ya no se usan (cada asesor configura los suyos) */ AVISOS = d.avisos || [];
   EMP_SUB = new Map(); LOTS.forEach(l => { if (!EMP_SUB.has(l.empresa)) EMP_SUB.set(l.empresa, new Set()); EMP_SUB.get(l.empresa).add(l.subzona); });
   const enDatos = [...new Set(LOTS.map(l => l.cultivo))];
   CULTIVOS = CULTIVOS_BASE.slice();
@@ -1733,6 +1767,8 @@ function renderDQ(){
 /* PRUEBA_LOCAL: la página de prueba usa los datos guardados (SNAPSHOT, que ya trae el ingreso) y no llama al servidor,
    porque el servidor publicado todavía no manda la columna Ingreso. Al publicar se pone en false. */
 const PRUEBA_LOCAL = false;
+/* PRUEBA 19/11: esta copia no guarda arriendos ni cosecha en Drive (se lee el servidor real, pero no se escribe). Al publicar se pone en false. */
+var PRUEBA_SIN_GUARDAR = false;
 let HAY_ING = false;
 async function syncData(forzar){
   if (PRUEBA_LOCAL && SNAPSHOT){ if (!DATA || forzar){ loadData(SNAPSHOT); render(); } SYNC_ERR = "Página de prueba: datos guardados del 17/11 (Salta-Jujuy + Tucumán)."; renderSync(); $("loading").hidden = true; if (forzar) toast("Página de prueba: usa los datos guardados"); return; }
@@ -1798,12 +1834,10 @@ function renderAdmin(){
   if (!ADM_DRAFT) ADM_DRAFT = admDraftFrom(REAL);
   REAL.admin.forEach(a => { if (!ADM_DRAFT[a.code]) ADM_DRAFT[a.code] = admDraftFrom({admin:[a]})[a.code]; });
   const rows = REAL.admin.slice().filter(a => typeof admPasa !== "function" || admPasa(a)).sort((x, y) => x.code.localeCompare(y.code, "es"));
-  $("admTable").innerHTML = `<thead><tr><th>Código</th><th>Empresa (nombre real)</th><th>Nombre de referencia</th><th>Mostrar al público</th><th>Arriendo u$s/ha por campaña y sub-zona</th><th>Cosecha u$s/ha por campaña</th><th>Última modificación</th></tr></thead><tbody>` +
+  $("admTable").innerHTML = `<thead><tr><th>Código</th><th>Empresa (nombre real)</th><th>Arriendo u$s/ha por campaña y sub-zona</th><th>Cosecha u$s/ha por campaña</th><th>Última modificación</th></tr></thead><tbody>` +
     rows.map(a => { const d = ADM_DRAFT[a.code]; const same = d.visible && (!d.ref.trim() || norm(d.ref) === norm(a.nombre));
       return `<tr data-code="${esc(a.code)}" class="${admDirty(a.code) ? "dirty" : ""}">
       <td class="code">${esc(a.code)}</td><td>${esc(titleCase(a.nombre))}<div class="note">${esc(subsOf(a.code))}</div></td>
-      <td><input type="text" data-f="ref" maxlength="40" value="${esc(d.ref)}" placeholder="Ej.: Finca del Tala" aria-label="Nombre de referencia de ${esc(a.code)}">${same ? `<span class="warnref">El público va a ver el nombre real.</span>` : ""}</td>
-      <td><label class="switch"><input type="checkbox" data-f="visible"${d.visible ? " checked" : ""} aria-label="Mostrar al público ${esc(a.code)}"> <span>${d.visible ? "Sí" : "No"}</span></label></td>
       <td>${a.camps.map(c => { const key = c.campana + "|" + c.subzona; return `<div class="camp"><b>${esc(campLabel(c.campana))}</b><span class="sz">${esc(c.subzona || "–")}</span><input type="number" step="0.01" min="0" max="1000" data-f="arr" data-c="${esc(key)}" value="${esc(d.arr[key])}" placeholder="${c.hoja == null ? "sin dato" : fmt(c.hoja, 2)}" aria-label="Arriendo manual ${esc(a.code)} ${esc(c.campana)} ${esc(c.subzona)}"><span class="hoja">Hoja: ${c.hoja == null ? "–" : fmt(c.hoja, 2)}</span></div>`; }).join("")}
         <div class="note">Vacío = usa la hoja · 0 = sin arriendo</div></td>
       <td>${cosCell(a, d)}<div class="note">Cada una se resta de su labor; la fila Cosecha muestra la suma</div></td>
@@ -1854,6 +1888,7 @@ function bindExtra(){
     tr.classList.toggle("dirty", admDirty(code));
   });
   on("btnAdmSave", "click", async () => {
+    if (window.PRUEBA_SIN_GUARDAR){ $("admMsg").textContent = "Página de prueba: no se guarda nada en Drive."; return; }
     const cambios = REAL.admin.filter(a => admDirty(a.code)).map(a => { const d = ADM_DRAFT[a.code];
       return {code:a.code, ref:d.ref.trim(), visible:d.visible, arr:Object.fromEntries(Object.entries(d.arr).map(([k, v]) => [k, v === "" ? null : +v])), antes:Object.fromEntries(a.camps.map(c => [c.campana + "|" + c.subzona, c.manual])),
         cos:Object.fromEntries((a.cos || []).map(c => { const x = d.cos[c.campana] || {lp:"", lc:""}; return [c.campana, {lp:x.lp === "" ? null : +x.lp, lc:x.lc === "" ? null : +x.lc}]; }))}; });
@@ -1862,8 +1897,6 @@ function bindExtra(){
     if (badCos.length){ $("admMsg").textContent = "Revisá la cosecha de " + badCos.join("; ") + " No se guardó nada."; return; }
     const bad = cambios.flatMap(c => Object.entries(c.arr).filter(([k, v]) => v != null && !(v >= 0 && v <= 1000)).map(([k]) => `${c.code} ${k.replace("|", " · ")}`));
     if (bad.length){ $("admMsg").textContent = "Revisá el arriendo de " + bad.join(", ") + ": tiene que estar entre 0 y 1.000 u$s/ha."; return; }
-    const same = cambios.filter(c => c.visible && (!c.ref || norm(c.ref) === norm(admOriginal(c.code).nombre)));
-    if (same.length && !confirmInline(same)) return;
     const autor = $("admAutor").value.trim(); if (!autor){ $("admMsg").textContent = "Escribí tu nombre para el historial."; $("admAutor").focus(); return; }
     try { localStorage.setItem("synagro_autor", autor); } catch(e){}
     const b = $("btnAdmSave"); b.disabled = true; $("admMsg").textContent = "Guardando en Drive…";
@@ -2189,7 +2222,7 @@ function renderCliente(){
    No toca el servidor. En el link y en el navegador solo van cultivo, campaña,
    región, zona, sub-zona, "analizar por", margen y cotización (hoja o ingreso): nunca nombres de clientes. */
 const PREF_KEY = "synagro_config_v1";
-const PREF_DEF = {cultivo:"Maíz", campana:[], region:[], zona:[], subzona:[], grupo:"subzona", margen:"mb", cot:"hoja"};
+const PREF_DEF = {cultivo:"Maíz", campana:[], region:[], zona:[], subzona:[], grupo:"subzona", margen:"mb", cot:"hoja", clientes:"todos"};
 const ULT = "__ultima";
 let PREF_FORM = null, PREF_DONE = false, PREF_FROM_LINK = false, ADMF = null;
 
@@ -2201,7 +2234,7 @@ function prefClean(p){
     campana:arr(p.campana), region:arr(p.region), zona:arr(p.zona), subzona:arr(p.subzona),
     grupo:["empresa","subzona","zona","region"].includes(p.grupo) ? p.grupo : PREF_DEF.grupo,
     margen:["mb","mbda"].includes(p.margen) ? p.margen : PREF_DEF.margen,
-    cot:["hoja","ing"].includes(p.cot) ? p.cot : PREF_DEF.cot};
+    cot:["hoja","ing"].includes(p.cot) ? p.cot : PREF_DEF.cot, clientes:p.clientes === "mios" ? "mios" : "todos"};
   if (o.campana.includes(ULT)) o.campana = [ULT];
   return o;
 }
@@ -2223,7 +2256,7 @@ function prefApply(p){
   let camp = p.campana.slice(); if (camp.includes(ULT)){ const u = lastCamp(state.cultivo); camp = u ? [u] : []; }
   // lo que ya no exista en los datos se descarta solo en renderFilters()
   Object.assign(state, {campana:camp, region:p.region.slice(), zona:p.zona.slice(), subzona:p.subzona.slice(), empresas:[], asesor:[], estab:"",
-    grupo:p.grupo, margen:p.margen, cotModo:p.cot, simCot:null, simRend:0});
+    grupo:p.grupo, margen:p.margen, cotModo:p.cot, mios:p.clientes === "mios", simCot:null, simRend:0});
 }
 /* Se llama desde loadData(): aplica la configuración solo la primera vez que llegan datos. */
 function prefsOnData(){
@@ -2237,7 +2270,7 @@ function prefSummary(p){
   const L = (a, all) => a.length ? a.join(", ") : all;
   const camp = p.campana.includes(ULT) ? "la más reciente" : (p.campana.length ? p.campana.map(campLabel).join(", ") : "todas");
   const G = {empresa:"empresa", subzona:"sub-zona", zona:"zona", region:"región"};
-  return `${p.cultivo} · Campaña: ${camp} · Región: ${L(p.region, "todas")} · Zona: ${L(p.zona, "todas")} · Sub-zona: ${L(p.subzona, "todas")} · Por ${G[p.grupo]} · ${p.margen === "mbda" ? "con arriendo" : "sin arriendo"} · Cotización: ${p.cot === "ing" ? "ingreso / rinde" : "hoja o manual"}`;
+  return `${p.cultivo} · Campaña: ${camp} · Región: ${L(p.region, "todas")} · Zona: ${L(p.zona, "todas")} · Sub-zona: ${L(p.subzona, "todas")} · Por ${G[p.grupo]} · ${p.margen === "mbda" ? "con arriendo" : "sin arriendo"} · Cotización: ${p.cot === "ing" ? "ingreso / rinde" : "hoja o manual"} · Filtro Empresa: ${p.clientes === "mios" ? "mis clientes arriba" : "orden alfabético"}`;
 }
 
 /* ---------- Opciones disponibles (de todos los datos cargados) ---------- */
@@ -2274,7 +2307,8 @@ function renderPrefForm(keepOpen){
     <div class="f"><span class="lab">Sub-zona</span>${msHTML("cfgSubzona", o.subs, f.subzona, "Todas", "sub-zonas")}</div>
     <div class="f"><label for="cfgGrupo">Analizar por</label><select id="cfgGrupo">${[["subzona","Sub-zona"],["empresa","Empresa"],["zona","Zona"],["region","Región"]].map(([v, t]) => `<option value="${v}"${v === f.grupo ? " selected" : ""}>${t}</option>`).join("")}</select></div>
     <div class="f"><label for="cfgMargen">Margen</label><select id="cfgMargen"><option value="mb"${f.margen === "mb" ? " selected" : ""}>Sin arriendo</option><option value="mbda"${f.margen === "mbda" ? " selected" : ""}>Con arriendo</option></select></div>
-    <div class="f"><label for="cfgCot">Cotización según</label><select id="cfgCot"><option value="hoja"${f.cot !== "ing" ? " selected" : ""}>Hoja o manual</option><option value="ing"${f.cot === "ing" ? " selected" : ""}>Ingreso / rinde</option></select></div>`;
+    <div class="f"><label for="cfgCot">Cotización según</label><select id="cfgCot"><option value="hoja"${f.cot !== "ing" ? " selected" : ""}>Hoja o manual</option><option value="ing"${f.cot === "ing" ? " selected" : ""}>Ingreso / rinde</option></select></div>
+    <div class="f"><label for="cfgClientes">Lista de empresas en filtros</label><select id="cfgClientes"><option value="todos"${f.clientes !== "mios" ? " selected" : ""}>Todas en orden alfabético</option><option value="mios"${f.clientes === "mios" ? " selected" : ""}>Mis clientes arriba</option></select>${f.clientes === "mios" && !misMios().length ? `<span class="hint">Todavía no marcaste clientes en «Mis clientes y nombres».</span>` : ""}</div>`;
   if (keepOpen && $(keepOpen)) $(keepOpen).open = true;
   const saved = prefRead();
   $("cfgStatus").innerHTML = saved
@@ -2290,6 +2324,7 @@ function bindPrefForm(){
     if (el.id === "cfgGrupo"){ f.grupo = el.value; return; }
     if (el.id === "cfgMargen"){ f.margen = el.value; return; }
     if (el.id === "cfgCot"){ f.cot = el.value; return; }
+    if (el.id === "cfgClientes"){ f.clientes = el.value; renderPrefForm(); return; }
     const ms = el.closest("details.ms"); if (!ms) return;
     const key = {cfgCampana:"campana", cfgRegion:"region", cfgZona:"zona", cfgSubzona:"subzona"}[ms.id]; if (!key) return;
     if (el.dataset.all) f[key] = [];
@@ -2298,7 +2333,7 @@ function bindPrefForm(){
     renderPrefForm(ms.id);
   });
   $("btnCfgFromNow").addEventListener("click", () => {
-    PREF_FORM = prefClean({cultivo:state.cultivo, campana:state.campana, region:state.region, zona:state.zona, subzona:state.subzona, grupo:state.grupo, margen:state.margen, cot:state.cotModo});
+    PREF_FORM = prefClean({cultivo:state.cultivo, campana:state.campana, region:state.region, zona:state.zona, subzona:state.subzona, grupo:state.grupo, margen:state.margen, cot:state.cotModo, clientes:state.mios ? "mios" : "todos"});
     renderPrefForm(); $("cfgMsg").textContent = "Cargué los filtros que tenés ahora. Tocá «Guardar» para dejarlos como predeterminados.";
   });
   $("btnCfgSave").addEventListener("click", () => {
@@ -2350,8 +2385,69 @@ function bindAdmFilter(){
   });
 }
 
+/* ---------- Mis clientes y nombres (personal, sin clave) ---------- */
+const MISF = {ver:"todas", q:""};
+let MIS_RESET_ASK = false;
+const misCodes = () => [...new Set(LOTS.map(l => l.empresa))].filter(Boolean).sort((a, b) => String(a).localeCompare(String(b), "es"));
+const misReal = e => (REAL && REAL.emp && REAL.emp[e]) ? titleCase(REAL.emp[e]) : "";
+const misSeen = e => misRef(e) || `Empresa ${e}`;
+function misWarn(e){
+  const x = misGet(e);
+  if (x.p && !String(x.r || "").trim()) return "Escribí un nombre: sin nombre se ve el código.";
+  const real = misReal(e); if (x.p && real && norm(x.r) === norm(real)) return "Es igual al nombre real: el público va a ver el nombre del cliente.";
+  return "";
+}
+function misSet(e, k, v){
+  const x = {...misGet(e), [k]: v};
+  if (!x.m && !x.p && !String(x.r || "").trim()) delete MIS.e[e]; else MIS.e[e] = x;
+  if (!misSave()) $("misMsg").textContent = "Este navegador no deja guardar datos (¿modo incógnito?): los cambios se pierden al cerrar.";
+  else $("misMsg").textContent = "Guardado en este navegador.";
+}
+function renderMis(){
+  if (!$("misTable") || !LOTS.length) return;
+  const withReal = !!(REAL && REAL.emp), q = norm(MISF.q || "");
+  document.querySelectorAll("#misVer button").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === MISF.ver));
+  const codes = misCodes().filter(e => (MISF.ver !== "mios" || misGet(e).m) &&
+    (!q || norm(e).includes(q) || norm(misGet(e).r || "").includes(q) || (withReal && norm(misReal(e)).includes(q))));
+  const cols = withReal ? 6 : 5;
+  $("misTable").innerHTML = `<thead><tr><th>Mi cliente</th><th>Código</th>${withReal ? "<th>Nombre real</th>" : ""}<th>Nombre de referencia</th><th>Mostrar al público</th><th>Así se ve</th></tr></thead><tbody>` +
+    (codes.length ? codes.map(e => { const x = misGet(e), w = misWarn(e); return `<tr data-code="${esc(e)}">
+      <td><label class="switch"><input type="checkbox" data-f="m"${x.m ? " checked" : ""} aria-label="Mi cliente ${esc(e)}"> <span>${x.m ? "Sí" : "No"}</span></label></td>
+      <td class="code">${esc(e)}</td>${withReal ? `<td>${esc(misReal(e))}</td>` : ""}
+      <td><input type="text" data-f="r" maxlength="40" value="${esc(x.r || "")}" placeholder="Ej.: Finca del Tala" aria-label="Nombre de referencia de ${esc(e)}"><span class="warnref"${w ? "" : " hidden"}>${esc(w)}</span></td>
+      <td><label class="switch"><input type="checkbox" data-f="p"${x.p ? " checked" : ""} aria-label="Mostrar al público ${esc(e)}"> <span>${x.p ? "Sí" : "No"}</span></label></td>
+      <td class="seen">${esc(misSeen(e))}</td></tr>`; }).join("")
+    : `<tr><td colspan="${cols}" class="note">${MISF.ver === "mios" ? "Todavía no marcaste clientes. Elegí «Todas las empresas» y tildá los tuyos." : "No hay empresas que coincidan con la búsqueda."}</td></tr>`) + `</tbody>`;
+}
+function bindMis(){
+  const tb = $("misTable");
+  tb.addEventListener("input", e => {
+    const el = e.target, tr = el.closest("tr"); if (!tr || el.dataset.f !== "r") return; const code = tr.dataset.code;
+    misSet(code, "r", el.value.slice(0, 40));
+    tr.querySelector(".seen").textContent = misSeen(code);
+    const w = misWarn(code), sp = tr.querySelector(".warnref"); sp.textContent = w; sp.hidden = !w;
+  });
+  tb.addEventListener("change", e => {
+    const el = e.target, tr = el.closest("tr"); if (!tr) return; const code = tr.dataset.code;
+    if (el.dataset.f === "m" || el.dataset.f === "p"){ misSet(code, el.dataset.f, el.checked ? 1 : 0); renderMis(); renderPrefForm(); }
+    render();
+  });
+  $("misVer").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; MISF.ver = b.dataset.v; renderMis(); });
+  $("misQ").addEventListener("input", e => { MISF.q = e.target.value; renderMis(); });
+  $("btnMisReset").addEventListener("click", () => {
+    if (!MIS_RESET_ASK){ MIS_RESET_ASK = true; $("misMsg").textContent = "Se van a borrar tus clientes y nombres de este navegador. Tocá el botón otra vez para confirmar."; return; }
+    MIS_RESET_ASK = false; MIS = {v:1, e:{}}; misSave(); renderMis(); renderPrefForm(); render();
+    $("misMsg").textContent = "Listo: se borraron tus clientes y nombres. Se ven los códigos."; toast("Mis clientes y nombres borrados");
+  });
+  // botón rápido de los filtros: Todos / Mis clientes
+  $("segMios").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; state.mios = b.dataset.v === "mios"; render(); toast(state.mios ? "Tus clientes aparecen primero en el filtro Empresa" : "Filtro Empresa en orden alfabético"); });
+  // si se cambia en otra pestaña del mismo navegador
+  window.addEventListener("storage", e => { if (e.key !== MIS_KEY) return; MIS = misLoad(); renderMis(); render(); });
+}
+
 /* ---------- Abrir / cerrar el módulo ---------- */
 function renderCfgAdmin(){
+  renderMis();
   const on = !!TOKEN;
   $("cfgAdmLocked").hidden = on;
   if (!on) $("admin").hidden = true;
@@ -2362,7 +2458,8 @@ function openCfg(){
   $("config").scrollIntoView({behavior:"smooth", block:"start"});
 }
 (function(){
-  bindPrefForm(); bindAdmFilter();
+  bindPrefForm(); bindAdmFilter(); bindMis();
+  if (window.PRUEBA_SIN_GUARDAR){ document.title = "PRUEBA · " + document.title; }
   $("btnCfg").addEventListener("click", () => { $("app").classList.remove("open"); openCfg(); });
   $("btnCfgClose").addEventListener("click", () => { $("config").hidden = true; });
   $("btnCfgUnlock").addEventListener("click", () => { $("unlock").hidden = false; $("unlockMsg").textContent = ""; $("unlock").scrollIntoView({behavior:"smooth", block:"center"}); $("fPass").focus(); });
